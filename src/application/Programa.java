@@ -1,9 +1,6 @@
 package application;
 
 import java.util.Scanner;
-import java.awt.Color;
-import enigma.console.*;
-import enigma.core.Enigma;
 import entidades.Caixa;
 
 public class Programa {

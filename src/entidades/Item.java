@@ -4,7 +4,7 @@ public class Item {
 	private Produto produto;
 	private Integer qtd;
 	
-	public Item(Produto produto, Integer qtd, Double valorItem) {
+	public Item(Produto produto, Integer qtd) {
 		this.produto = produto;
 		this.qtd = qtd;
 	}
