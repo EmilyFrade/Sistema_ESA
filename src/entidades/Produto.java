@@ -13,7 +13,7 @@ public class Produto {
 	private String descricao;
 	private Double precoDeCusto;
 	private Double precoDeVenda;
-	private Double porcenPV = 1.6;
+	private Double porcentagemLucro = 1.6;
 	private Integer estoque;
 	private Integer estoqueMin = 1;
 	private Integer qtdVendida = 0;
@@ -49,9 +49,9 @@ public class Produto {
 	public void setPrecoDeCusto(Double precoDeCusto) {
 		this.precoDeCusto = precoDeCusto;
 	}
-	
-	public void setPorcenPV(Double porcenPV) {
-		this.porcenPV = porcenPV;
+
+	public Double getPorcentagemLucro() {
+		return porcentagemLucro;
 	}
 
 	public Double getPrecoDeVenda() {
@@ -85,6 +85,13 @@ public class Produto {
 		System.out.println("Estoque mínimo atualizado: " + estoqueMin + " unidades.");
 	}
 	
+	public void porcentagemLucro() {
+		System.out.println("A porcentagem de lucro atual é " + porcentagemLucro * 100);
+		System.out.println("Quanto gostaria de colocar como porcentagem de lucro? ");
+		porcentagemLucro = sc.nextDouble() / 100;
+		System.out.println("Porcentagem de lucro atualizada: " + porcentagemLucro * 100);
+	}
+	
 	public void diminuirEstoque() {
 		estoque--;
 	}
@@ -100,14 +107,10 @@ public class Produto {
 	public void incluirProduto(Produto p) { 
 		produtos.add(p);
 		p.setCodigo(produtos.indexOf(p) + 1);
+		p.precoDeVenda = calculaPrecoVenda();
 	}
 	
-	public Double CalculaPrecoVenda() {
-		return precoDeCusto * porcenPV;
+	public Double calculaPrecoVenda() {
+		return precoDeCusto * porcentagemLucro;
 	}
-	
-	public void GerentePV(Double porcenPV) {
-		this.porcenPV = porcenPV;
-	}
-	
 }
