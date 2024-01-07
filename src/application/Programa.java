@@ -1,7 +1,6 @@
 package application;
 
 import java.util.Scanner;
-import java.awt.Color;
 import entidades.Caixa;
 
 public class Programa {

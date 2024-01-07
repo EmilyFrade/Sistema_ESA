@@ -1,19 +1,28 @@
 package entidades;
 
-public class Cliente extends Pessoa{
-	private Integer qtdCompras = 0;
-	private String CPF;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cliente extends Usuario{
+	List<Cliente> clientes = new ArrayList<>();
 	
-	public Cliente(String nome, Integer numeroCelular, Integer codigo, String CPF) {
-		super(nome, numeroCelular, codigo);
-		this.CPF = CPF;
+	private Integer qtdCompras = 0;
+
+	public Cliente(String nome, Integer numeroCelular, String cpf_cnpj, Integer qtdCompras) {
+		super(nome, numeroCelular, cpf_cnpj);
+		this.qtdCompras = qtdCompras;
 	}
 
 	public Integer getQtdCompras() {
 		return qtdCompras;
 	}
 
-	public String getCPF() {
-		return CPF;
+	public void adicionarCompra() {
+		qtdCompras++;
+	}
+	
+	public void incluirCliente(Cliente cliente) { 
+		clientes.add(cliente);
+		cliente.setCodigo(users.indexOf(cliente) + 1);
 	}
 }

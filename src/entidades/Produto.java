@@ -87,8 +87,8 @@ public class Produto {
 		System.out.println("Estoque mínimo atualizado: " + estoqueMin + " unidades.");
 	}
 	
-	public void pesquisaProduto() {
-		
+	public void pesquisarProduto() {
+		// chamar relatorio produtos
 	}
 	
 	public void incluirProduto(Produto p) { 
