@@ -1,6 +1,10 @@
 package entidades;
 
+import java.util.Scanner;
+
 public class Produto {
+	Scanner sc = new Scanner(System.in);
+	
 	private Integer codigo;
 	private String descricao;
 	private Double precoDeCusto;
@@ -67,5 +71,16 @@ public class Produto {
 
 	public void setCategoria(String categoria) {
 		Categoria = categoria;
+	}
+	
+	public void definirEstoqueMin() {
+		System.out.println("O estoque mínimo atual é " + estoqueMin);
+		System.out.println("Quanto gostaria de colocar como estoque mínimo? ");
+		estoqueMin = sc.nextInt();
+		System.out.println("Estoque mínimo atualizado: " + estoqueMin + " unidades.");
+	}
+	
+	public void pesquisaProduto() {
+		
 	}
 }

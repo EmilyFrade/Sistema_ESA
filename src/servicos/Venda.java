@@ -17,12 +17,9 @@ public class Venda {
 	private Cliente client;
 	private List<Item> list = new ArrayList<>();
 	
-	public Venda(Date data, Integer codigo, Double valorTotal, Cliente client, List<Item> list) {
+	public Venda(Date data, Integer codigo, Cliente client) {
 		this.data = data;
 		this.codigo = codigo;
-		this.condPag = condPag;
-		this.desconto = desconto;
-		this.valorTotal = valorTotal;
 		this.client = client;
 	}
 
@@ -68,6 +65,10 @@ public class Venda {
 
 	public void adicionarItem(Item item) {
 		list.add(item);
+	}
+	
+	public void fazerVenda() {
+		
 	}
 	
 	public Double calcularTotal() {
