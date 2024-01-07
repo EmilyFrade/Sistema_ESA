@@ -1,32 +1,39 @@
 package entidades;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Produto {
 	Scanner sc = new Scanner(System.in);
+	
+	protected List<Produto> sofas = new ArrayList<>();
+	protected List<Produto> armarios = new ArrayList<>();
+	protected List<Produto> camas = new ArrayList<>();
 	
 	private Integer codigo;
 	private String descricao;
 	private Double precoDeCusto;
 	private Double precoDeVenda;
 	private Integer estoque;
-	private Integer estoqueMin = 5;
-	private Integer qtdVendida;
-	private String Categoria;
+	private Integer estoqueMin = 1;
+	private Integer qtdVendida = 0;
+	private String categoria;
 	
-	public Produto(Integer codigo, String descricao, Double precoDeCusto, 
-			Double precoDeVenda, Integer estoque,
-			Integer qtd, String categoria) {
-		this.codigo = codigo;
+	public Produto(String descricao, Double precoDeCusto, Double precoDeVenda, Integer estoque, String categoria) {
 		this.descricao = descricao;
 		this.precoDeCusto = precoDeCusto;
 		this.precoDeVenda = precoDeVenda;
 		this.estoque = estoque;
-		Categoria = categoria;
+		this.categoria = categoria;
 	}
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+	
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getDescricao() {
@@ -66,11 +73,11 @@ public class Produto {
 	}
 
 	public String getCategoria() {
-		return Categoria;
+		return categoria;
 	}
 
 	public void setCategoria(String categoria) {
-		Categoria = categoria;
+		this.categoria = categoria;
 	}
 	
 	public void definirEstoqueMin() {
@@ -82,5 +89,18 @@ public class Produto {
 	
 	public void pesquisaProduto() {
 		
+	}
+	
+	public void incluirProduto(Produto p) { 
+		if (p.getCategoria() == "Sofás") {
+			sofas.add(p);
+			p.setCodigo(sofas.indexOf(p) + 1);
+		} else if (p.getCategoria() == "Armários") {
+			armarios.add(p);
+			p.setCodigo(armarios.indexOf(p) + 1);
+		} else if (p.getCategoria() == "Camas") {
+			camas.add(p);
+			p.setCodigo(camas.indexOf(p) + 1);
+		} 
 	}
 }

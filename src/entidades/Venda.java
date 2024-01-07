@@ -1,11 +1,8 @@
-package servicos;
+package entidades;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import entidades.Cliente;
-import entidades.Item;
 
 public class Venda {
 	private Date data;
