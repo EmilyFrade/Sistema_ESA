@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -15,6 +16,7 @@ public class Venda {
 	
 	private Item item;
 	private Cliente client;
+	private List<Venda> vendas = new ArrayList<>();
 	protected List<Item> itens;
 	protected List<Cliente> clientes;
 	
@@ -84,13 +86,32 @@ public class Venda {
 			recibo();
 			
 			System.out.println("Qual a forma de pagamento?");
-			condPag = sc.nextLine();
+			System.out.println("[1] À vista \n[2] À prazo");
+			Integer pag = sc.nextInt();
+
+			if (pag == 1)
+				condPag = "À vista";
+			else if (pag == 2)
+				condPag = "À prazo";
+			else
+				System.out.println("Número inválido.");
+			
+			System.out.println("Valor total da compra: R$" + valorTotal);
 			
 			System.out.println("Deseja finalizar a compra? (s/n)");
 			char finalizar = sc.next().charAt(0);
 			
 			if (finalizar == 's' || finalizar == 'S') {
 				System.out.println("Compra realizada com sucesso");
+				cliente.adicionarCompra();
+				
+				for (Item y : itens) {
+					for (int i = 0; i < y.getQtd(); i++)
+						y.getProduto().diminuirEstoque();
+				}
+				
+				vendas.add(venda);
+				codigo = vendas.indexOf(venda);
 			}
 		}
 	}
@@ -111,5 +132,9 @@ public class Venda {
 					+ " " + x.getProduto().getPrecoDeVenda() + " " + x.calcularSubtotal(x));
 		
 		//valor total -10% desconto a vista
+	}
+	
+	public Double desconto() {
+		return valorTotal;
 	}
 }
