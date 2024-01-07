@@ -13,15 +13,15 @@ public class Produto {
 	private String descricao;
 	private Double precoDeCusto;
 	private Double precoDeVenda;
+	private Double porcenPV = 1.6;
 	private Integer estoque;
 	private Integer estoqueMin = 1;
 	private Integer qtdVendida = 0;
 	private String categoria;
 	
-	public Produto(String descricao, Double precoDeCusto, Double precoDeVenda, Integer estoque, String categoria) {
+	public Produto(String descricao, Double precoDeCusto, Integer estoque, String categoria) {
 		this.descricao = descricao;
 		this.precoDeCusto = precoDeCusto;
-		this.precoDeVenda = precoDeVenda;
 		this.estoque = estoque;
 		this.categoria = categoria;
 	}
@@ -49,13 +49,13 @@ public class Produto {
 	public void setPrecoDeCusto(Double precoDeCusto) {
 		this.precoDeCusto = precoDeCusto;
 	}
+	
+	public void setPorcenPV(Double porcenPV) {
+		this.porcenPV = porcenPV;
+	}
 
 	public Double getPrecoDeVenda() {
 		return precoDeVenda;
-	}
-
-	public void setPrecoDeVenda(Double precoDeVenda) {
-		this.precoDeVenda = precoDeVenda;
 	}
 
 	public Integer getEstoque() {
@@ -93,4 +93,13 @@ public class Produto {
 		produtos.add(p);
 		p.setCodigo(produtos.indexOf(p) + 1);
 	}
+	
+	public Double CalculaPrecoVenda() {
+		return precoDeCusto * porcenPV;
+	}
+	
+	public void GerentePV(Double porcenPV) {
+		this.porcenPV = porcenPV;
+	}
+	
 }
