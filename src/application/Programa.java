@@ -104,7 +104,11 @@ public class Programa {
                         }
                     }
                     break; 
+                case 2:
+                	
             }
+            
+            	
         }
         sc.close();
     }
