@@ -48,4 +48,10 @@ public class Caixa {
 		
 		return 1;
 	}
-}
+	
+	public void vizualizarCaixa() {
+		System.out.printf("Valor atual do caixa: %.2f \n", valor);
+		}
+
+	}
+
