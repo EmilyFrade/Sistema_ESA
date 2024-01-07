@@ -2,13 +2,15 @@ package application;
 
 import java.util.Scanner;
 
-import entidades.Vendedor;
+import entidades.Caixa;
 
 public class Programa {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Vendedor ve = new Vendedor("Ana", 12, 34, 0.0);
+        
+        Caixa caixa = new Caixa();
+        
         int sair = 1;
         int sairMenu = 1, caixaAberto = 0;
 
@@ -37,7 +39,7 @@ public class Programa {
                         switch (menuVendedor) {
 
                             case 1:
-                                ve.abrirCaixa();
+                                caixa.abrirCaixa();
                                 caixaAberto = 1;
                                 sairMenu = 2;
                                 break;
@@ -60,7 +62,7 @@ public class Programa {
                             case 3:
                                 if (caixaAberto == 1) {
                                     do {
-                                        ve.adicionarDinheiro();
+                                        caixa.adicionarDinheiro();
                                         System.out.println("Deseja adicionar mais dinheiro?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
                                     } while (sairMenu == 1);
@@ -74,7 +76,7 @@ public class Programa {
                             case 4:
                                 if (caixaAberto == 1) {
                                     do {
-                                        ve.sangria();
+                                        caixa.sangria();
                                         System.out.println("Deseja retirar mais dinheiro?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
                                     } while (sairMenu == 1);
@@ -88,7 +90,7 @@ public class Programa {
                             case 5:
                                 if (caixaAberto == 1) {
                                    
-                                       ve.fecharCaixa();
+                                       caixa.fecharCaixa();
                                         sairMenu = 2;
                                 } else {
                                 	
