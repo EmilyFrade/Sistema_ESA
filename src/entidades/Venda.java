@@ -1,22 +1,25 @@
 package entidades;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 public class Venda {
+	Scanner sc = new Scanner(System.in);
+	
 	private Date data;
 	private Integer codigo;
 	private String condPag;
-	private Double desconto = 0.0;
+	private Double desconto = 0.1;
 	private Double valorTotal = 0.0;
 	
+	private Item item;
 	private Cliente client;
-	private List<Item> list = new ArrayList<>();
+	protected List<Item> itens;
+	protected List<Cliente> clientes;
 	
-	public Venda(Date data, Integer codigo, Cliente client) {
+	public Venda(Date data, Cliente client) {
 		this.data = data;
-		this.codigo = codigo;
 		this.client = client;
 	}
 
@@ -55,32 +58,58 @@ public class Venda {
 	public void setClient(Cliente client) {
 		this.client = client;
 	}
-
-	public List<Item> getList() {
-		return list;
-	}
-
-	public void adicionarItem(Item item) {
-		list.add(item);
-	}
 	
 	public void fazerVenda() {
+		System.out.println("Qual o CPF/CNPJ do cliente (sem pontos): ");
+		String c = sc.nextLine();
 		
+		Cliente cliente;
+		
+		for (Cliente x : clientes) {
+			if (x.getCpf_cnpj() == c) {
+				cliente = x;
+			} else {
+				System.out.println("Qual o nome do cliente: ");
+				String nome = sc.nextLine();
+				System.out.println("Qual o número de celular do cliente: ");
+				String numero = sc.nextLine();
+				
+				cliente = new Cliente(nome, numero, c);
+			}
+			
+			Venda venda = new Venda(new Date(), cliente);
+			
+			item.adicionarItem();
+			
+			recibo();
+			
+			System.out.println("Qual a forma de pagamento?");
+			condPag = sc.nextLine();
+			
+			System.out.println("Deseja finalizar a compra? (s/n)");
+			char finalizar = sc.next().charAt(0);
+			
+			if (finalizar == 's' || finalizar == 'S') {
+				System.out.println("Compra realizada com sucesso");
+			}
+		}
 	}
 	
 	public Double calcularTotal() {
-		for (Item x : list) {
-			this.valorTotal += x.calcularSubtotal();
+		for (Item x : itens) {
+			valorTotal += x.calcularSubtotal(x);
 		}
 		
-		return this.valorTotal;
+		return valorTotal;
 	}
 	
 	public void recibo() {
 		System.out.println("Itens adicionados ao carrinho: ");
 		System.out.println("Código - Descrição -------------- VUnit ------ SubTotal ---------");
-		for (Item x : list) 
+		for (Item x : itens) 
 			System.out.println(x.getProduto().getCodigo() + " " + x.getProduto().getDescricao() 
-					+ " " + x.getProduto().getPrecoDeVenda() + " " + x.calcularSubtotal());
+					+ " " + x.getProduto().getPrecoDeVenda() + " " + x.calcularSubtotal(x));
+		
+		//valor total -10% desconto a vista
 	}
 }

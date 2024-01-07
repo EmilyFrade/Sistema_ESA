@@ -7,11 +7,11 @@ public class Usuario {
 	List<Usuario> users = new ArrayList<>();
 	
 	private String nome;
-	private Integer numeroCelular;
+	private String numeroCelular;
 	private String cpf_cnpj;
 	private Integer codigo;
 	
-	public Usuario(String nome, Integer numeroCelular, String cpf_cnpj) {
+	public Usuario(String nome, String numeroCelular, String cpf_cnpj) {
 		this.nome = nome;
 		this.numeroCelular = numeroCelular;
 		this.cpf_cnpj = cpf_cnpj;
@@ -25,11 +25,11 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public Integer getNumeroCelular() {
+	public String getNumeroCelular() {
 		return numeroCelular;
 	}
 
-	public void setNumeroCelular(Integer numeroCelular) {
+	public void setNumeroCelular(String numeroCelular) {
 		this.numeroCelular = numeroCelular;
 	}
 

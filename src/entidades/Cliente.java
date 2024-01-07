@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente extends Usuario{
-	List<Cliente> clientes = new ArrayList<>();
+	protected List<Cliente> clientes = new ArrayList<>();
 	
 	private Integer qtdCompras = 0;
 
-	public Cliente(String nome, Integer numeroCelular, String cpf_cnpj, Integer qtdCompras) {
+	public Cliente(String nome, String numeroCelular, String cpf_cnpj) {
 		super(nome, numeroCelular, cpf_cnpj);
-		this.qtdCompras = qtdCompras;
 	}
 
 	public Integer getQtdCompras() {

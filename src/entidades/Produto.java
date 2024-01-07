@@ -7,9 +7,7 @@ import java.util.Scanner;
 public class Produto {
 	Scanner sc = new Scanner(System.in);
 	
-	protected List<Produto> sofas = new ArrayList<>();
-	protected List<Produto> armarios = new ArrayList<>();
-	protected List<Produto> camas = new ArrayList<>();
+	protected List<Produto> produtos = new ArrayList<>();
 	
 	private Integer codigo;
 	private String descricao;
@@ -92,15 +90,7 @@ public class Produto {
 	}
 	
 	public void incluirProduto(Produto p) { 
-		if (p.getCategoria() == "Sofás") {
-			sofas.add(p);
-			p.setCodigo(sofas.indexOf(p) + 1);
-		} else if (p.getCategoria() == "Armários") {
-			armarios.add(p);
-			p.setCodigo(armarios.indexOf(p) + 1);
-		} else if (p.getCategoria() == "Camas") {
-			camas.add(p);
-			p.setCodigo(camas.indexOf(p) + 1);
-		} 
+		produtos.add(p);
+		p.setCodigo(produtos.indexOf(p) + 1);
 	}
 }
