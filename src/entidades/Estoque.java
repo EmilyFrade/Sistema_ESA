@@ -17,6 +17,7 @@ public class Estoque {
 		p = new Produto("Sofá com chaise 4 lugares", 1076.80, 2692.00, 1, "Sofás");
 		p.incluirProduto(p);
 		
+		
 		p = new Produto("Armario Cozinha 7 Portas e 2 Gavetas Juliete", 178.80, 447.00, 5, "Armários");
 		p.incluirProduto(p);
 		
