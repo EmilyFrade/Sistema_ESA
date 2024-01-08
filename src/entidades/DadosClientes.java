@@ -1,6 +1,8 @@
 package entidades;
 
 public class DadosClientes {
+	public DadosClientes() {}
+	
 	public void clientesIniciais() {
 		Cliente cliente = new Cliente("Emily", "31992859255", "12345678910");
 		cliente.incluirCliente(cliente);

@@ -1,6 +1,8 @@
 package entidades;
 
 public class Estoque {
+	public Estoque() {}
+	
 	public void estoqueInicial() {
 		Produto p = new Produto("Sofá 3 lugares", 480.00, 4, "Sofás");
 		p.incluirProduto(p);

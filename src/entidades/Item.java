@@ -5,22 +5,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Item {
-	Scanner sc = new Scanner(System.in);
+	private Integer qtd;
+	private List<Item> itens = new ArrayList<>();
 	
 	private Produto produto = new Produto();
-	private Integer qtd;
-	
-	protected List<Item> itens = new ArrayList<>();
+	private Estoque e = new Estoque();
 	
 	public Item() {}
 	
 	public Item(Produto produto, Integer qtd) {
 		this.produto = produto;
 		this.qtd = qtd;
-	}
-
-	public Produto getProduto() {
-		return produto;
 	}
 
 	public Integer getQtd() {
@@ -31,8 +26,22 @@ public class Item {
 		this.qtd = qtd;
 	}
 	
+	public List<Item> getItens() {
+		return itens;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
 	public void adicionarItem() {
-		System.out.println("Chegou aqui");
+		Scanner sc = new Scanner(System.in); 
+		e.estoqueInicial();
+	
 		char c = 's';
 		
 		while (c == 's' || c == 'S' ) {
@@ -58,6 +67,8 @@ public class Item {
 			System.out.println("Deseja adicionar novo produto ao carrinho? (s/n)");
 			c = sc.next().charAt(0);	
 		}	
+		
+		sc.close();
 	}
 	
 	public Double calcularSubtotal(Item item) {

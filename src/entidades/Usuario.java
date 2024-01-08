@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
-	List<Usuario> users = new ArrayList<>();
-	
 	private String nome;
 	private String numeroCelular;
 	private String cpf_cnpj;
 	private Integer codigo;
+	
+	private List<Usuario> users = new ArrayList<>();
 	
 	public Usuario() {}
 	
@@ -49,6 +49,10 @@ public class Usuario {
 	
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
+	}
+	
+	public List<Usuario> getUsers() {
+		return users;
 	}
 	
 	public void incluirUsuario(Usuario user) { 

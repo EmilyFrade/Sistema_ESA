@@ -79,7 +79,7 @@ public class Programa {
                                 if (caixaAberto == 1) {
                                     do {
                                         caixa.adicionarDinheiro();
-                                        System.out.println("Deseja adicionar mais dinheiro?\n[1] Sim \n[2] Não");
+                                        System.out.println("\n\nDeseja adicionar mais dinheiro?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
                                     } while (sairMenu == 1);
                                 } else {
@@ -95,7 +95,7 @@ public class Programa {
                                 if (caixaAberto == 1) {
                                     do {
                                         caixa.sangria();
-                                        System.out.println("Deseja retirar mais dinheiro?\n[1] Sim \n[2] Não");
+                                        System.out.println("\n\nDeseja retirar mais dinheiro?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
                                     } while (sairMenu == 1);
                                 } else {

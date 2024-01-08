@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente extends Usuario{
-	protected List<Cliente> clientes = new ArrayList<>();
-	
 	private Integer qtdCompras = 0;
+	private static List<Cliente> clientes = new ArrayList<>();
 	
 	public Cliente() {}
 
@@ -14,12 +13,12 @@ public class Cliente extends Usuario{
 		super(nome, numeroCelular, cpf_cnpj);
 	}
 	
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
 	public Integer getQtdCompras() {
 		return qtdCompras;
+	}
+	
+	public List<Cliente> getClientes() {
+		return clientes;
 	}
 
 	public void adicionarCompra() {
@@ -28,6 +27,6 @@ public class Cliente extends Usuario{
 	
 	public void incluirCliente(Cliente cliente) { 
 		clientes.add(cliente);
-		cliente.setCodigo(users.indexOf(cliente) + 1);
+		cliente.setCodigo(clientes.indexOf(cliente) + 1);
 	}
 }

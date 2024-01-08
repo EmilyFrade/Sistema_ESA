@@ -12,9 +12,11 @@ public class Venda {
 	private Double desconto = 0.1;
 	private Double valorTotal = 0.0;
 	
+	private List<Venda> vendas = new ArrayList<>();
+	
 	private Cliente cliente = new Cliente();
 	private Item item = new Item();
-	private List<Venda> vendas = new ArrayList<>();
+	private DadosClientes d = new DadosClientes();
 	
 	public Venda() {}
 	
@@ -29,6 +31,10 @@ public class Venda {
 
 	public Integer getCodigo() {
 		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getCondPag() {
@@ -50,27 +56,35 @@ public class Venda {
 	public Double getValorTotal() {
 		return valorTotal;
 	}
-
-	public Cliente getClient() {
+	
+	public List<Venda> getVendas() {
+		return vendas;
+	}
+	
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setClient(Cliente client) {
-		this.cliente = client;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
-	
+
 	public void fazerVenda() {
 		Scanner sc = new Scanner(System.in);
 		
+		d.clientesIniciais();
+		
 		System.out.print("Qual o CPF/CNPJ do cliente (sem pontos): ");
-		String c = sc.nextLine();
+		String cpf = sc.nextLine();
 		
 		Cliente temp = null;
 		
 		for (Cliente x : cliente.getClientes()) {
-			System.out.println("Achou");
-			if (x.getCpf_cnpj().equals(c)) {
+			if (x.getCpf_cnpj().equals(cpf)) {
 				temp = x;
+				System.out.println("Nome do cliente: " + x.getNome());
+				System.out.println("Número de celular: " + x.getNumeroCelular());
+				System.out.println();
 				break;
 			}
 		}
@@ -80,18 +94,13 @@ public class Venda {
 			String nome = sc.nextLine();
 			System.out.print("Qual o número de celular do cliente: ");
 			String numero = sc.nextLine();
+			System.out.println();
 			
-			temp = new Cliente(nome, numero, c);
+			temp = new Cliente(nome, numero, cpf);
 	        cliente.incluirCliente(temp);
 		}
 			
 		Venda venda = new Venda(new Date(), temp);
-		
-		/*System.out.println(venda.getClient().getNome() 
-				+ " " + venda.getClient().getCpf_cnpj()
-				+ " " + venda.getClient().getNumeroCelular()
-				+ " " + venda.getData());
-		*/
 		
 		item.adicionarItem();
 		
@@ -117,7 +126,7 @@ public class Venda {
 			System.out.println("Compra realizada com sucesso");
 			cliente.adicionarCompra();
 			
-			for (Item y : item.itens) {
+			for (Item y : item.getItens()) {
 				for (int i = 0; i < y.getQtd(); i++)
 					y.getProduto().diminuirEstoque();
 			}
@@ -130,7 +139,7 @@ public class Venda {
 	}
 	
 	public Double calcularTotal() {
-		for (Item x : item.itens) {
+		for (Item x : item.getItens()) {
 			valorTotal += x.calcularSubtotal(x);
 		}
 		
@@ -140,7 +149,7 @@ public class Venda {
 	public void recibo() {
 		System.out.println("Itens adicionados ao carrinho: ");
 		System.out.println("Código - Descrição -------------- VUnit ------ SubTotal ---------");
-		for (Item x : item.itens) 
+		for (Item x : item.getItens()) 
 			System.out.println(x.getProduto().getCodigo() + " " + x.getProduto().getDescricao() 
 					+ " " + x.getProduto().getPrecoDeVenda() + " " + x.calcularSubtotal(x));
 		
