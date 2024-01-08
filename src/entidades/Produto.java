@@ -19,6 +19,8 @@ public class Produto {
 	private Integer qtdVendida = 0;
 	private String categoria;
 	
+	public Produto() {}
+	
 	public Produto(String descricao, Double precoDeCusto, Integer estoque, String categoria) {
 		this.descricao = descricao;
 		this.precoDeCusto = precoDeCusto;
@@ -85,7 +87,7 @@ public class Produto {
 		System.out.println("Estoque mínimo atualizado: " + estoqueMin + " unidades.");
 	}
 	
-	public void porcentagemLucro() {
+	public void definirPorcenLucro() {
 		System.out.println("A porcentagem de lucro atual é " + porcentagemLucro * 100);
 		System.out.println("Quanto gostaria de colocar como porcentagem de lucro? ");
 		porcentagemLucro = sc.nextDouble() / 100;

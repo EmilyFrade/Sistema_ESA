@@ -7,11 +7,12 @@ import java.util.Scanner;
 public class Item {
 	Scanner sc = new Scanner(System.in);
 	
-	private Produto produto;
+	private Produto produto = new Produto();
 	private Integer qtd;
 	
 	protected List<Item> itens = new ArrayList<>();
-	protected List<Produto> produtos;
+	
+	public Item() {}
 	
 	public Item(Produto produto, Integer qtd) {
 		this.produto = produto;
@@ -31,6 +32,7 @@ public class Item {
 	}
 	
 	public void adicionarItem() {
+		System.out.println("Chegou aqui");
 		char c = 's';
 		
 		while (c == 's' || c == 'S' ) {
@@ -39,7 +41,7 @@ public class Item {
 			System.out.println("Qual o código do produto que deseja adicionar ao carrinho? ");
 			Integer codigo = sc.nextInt();
 			
-			for (Produto x : produtos) {
+			for (Produto x : produto.produtos) {
 				if (x.getCodigo() == codigo) {
 					do {
 						System.out.println("Quantas unidades do produto deseja adicionar? ");

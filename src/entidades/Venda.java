@@ -6,23 +6,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Venda {
-	Scanner sc = new Scanner(System.in);
-	
 	private Date data;
 	private Integer codigo;
 	private String condPag;
 	private Double desconto = 0.1;
 	private Double valorTotal = 0.0;
 	
-	private Item item;
-	private Cliente client;
+	private Cliente cliente = new Cliente();
+	private Item item = new Item();
 	private List<Venda> vendas = new ArrayList<>();
-	protected List<Item> itens;
-	protected List<Cliente> clientes;
+	
+	public Venda() {}
 	
 	public Venda(Date data, Cliente client) {
 		this.data = data;
-		this.client = client;
+		this.cliente = client;
 	}
 
 	public Date getData() {
@@ -54,70 +52,85 @@ public class Venda {
 	}
 
 	public Cliente getClient() {
-		return client;
+		return cliente;
 	}
 
 	public void setClient(Cliente client) {
-		this.client = client;
+		this.cliente = client;
 	}
 	
 	public void fazerVenda() {
-		System.out.println("Qual o CPF/CNPJ do cliente (sem pontos): ");
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Qual o CPF/CNPJ do cliente (sem pontos): ");
 		String c = sc.nextLine();
 		
-		Cliente cliente;
+		Cliente temp = null;
 		
-		for (Cliente x : clientes) {
-			if (x.getCpf_cnpj() == c) {
-				cliente = x;
-			} else {
-				System.out.println("Qual o nome do cliente: ");
-				String nome = sc.nextLine();
-				System.out.println("Qual o número de celular do cliente: ");
-				String numero = sc.nextLine();
-				
-				cliente = new Cliente(nome, numero, c);
-			}
-			
-			Venda venda = new Venda(new Date(), cliente);
-			
-			item.adicionarItem();
-			
-			recibo();
-			
-			System.out.println("Qual a forma de pagamento?");
-			System.out.println("[1] À vista \n[2] À prazo");
-			Integer pag = sc.nextInt();
-
-			if (pag == 1)
-				condPag = "À vista";
-			else if (pag == 2)
-				condPag = "À prazo";
-			else
-				System.out.println("Número inválido.");
-			
-			System.out.println("Valor total da compra: R$" + valorTotal);
-			
-			System.out.println("Deseja finalizar a compra? (s/n)");
-			char finalizar = sc.next().charAt(0);
-			
-			if (finalizar == 's' || finalizar == 'S') {
-				System.out.println("Compra realizada com sucesso");
-				cliente.adicionarCompra();
-				
-				for (Item y : itens) {
-					for (int i = 0; i < y.getQtd(); i++)
-						y.getProduto().diminuirEstoque();
-				}
-				
-				vendas.add(venda);
-				codigo = vendas.indexOf(venda);
+		for (Cliente x : cliente.getClientes()) {
+			System.out.println("Achou");
+			if (x.getCpf_cnpj().equals(c)) {
+				temp = x;
+				break;
 			}
 		}
+		
+		if (temp == null) {
+			System.out.print("Qual o nome do cliente: ");
+			String nome = sc.nextLine();
+			System.out.print("Qual o número de celular do cliente: ");
+			String numero = sc.nextLine();
+			
+			temp = new Cliente(nome, numero, c);
+	        cliente.incluirCliente(temp);
+		}
+			
+		Venda venda = new Venda(new Date(), temp);
+		
+		/*System.out.println(venda.getClient().getNome() 
+				+ " " + venda.getClient().getCpf_cnpj()
+				+ " " + venda.getClient().getNumeroCelular()
+				+ " " + venda.getData());
+		*/
+		
+		item.adicionarItem();
+		
+		recibo();
+		
+		System.out.println("Qual a forma de pagamento?");
+		System.out.println("[1] À vista \n[2] À prazo");
+		Integer pag = sc.nextInt();
+
+		if (pag == 1)
+			condPag = "À vista";
+		else if (pag == 2)
+			condPag = "À prazo";
+		else
+			System.out.println("Número inválido.");
+		
+		System.out.println("Valor total da compra: R$" + valorTotal);
+		
+		System.out.println("Deseja finalizar a compra? (s/n)");
+		char finalizar = sc.next().charAt(0);
+		
+		if (finalizar == 's' || finalizar == 'S') {
+			System.out.println("Compra realizada com sucesso");
+			cliente.adicionarCompra();
+			
+			for (Item y : item.itens) {
+				for (int i = 0; i < y.getQtd(); i++)
+					y.getProduto().diminuirEstoque();
+			}
+			
+			vendas.add(venda);
+			codigo = vendas.indexOf(venda);
+		}
+		
+		sc.close();
 	}
 	
 	public Double calcularTotal() {
-		for (Item x : itens) {
+		for (Item x : item.itens) {
 			valorTotal += x.calcularSubtotal(x);
 		}
 		
@@ -127,7 +140,7 @@ public class Venda {
 	public void recibo() {
 		System.out.println("Itens adicionados ao carrinho: ");
 		System.out.println("Código - Descrição -------------- VUnit ------ SubTotal ---------");
-		for (Item x : itens) 
+		for (Item x : item.itens) 
 			System.out.println(x.getProduto().getCodigo() + " " + x.getProduto().getDescricao() 
 					+ " " + x.getProduto().getPrecoDeVenda() + " " + x.calcularSubtotal(x));
 		
@@ -138,3 +151,4 @@ public class Venda {
 		return valorTotal;
 	}
 }
+
