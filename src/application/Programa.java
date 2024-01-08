@@ -119,7 +119,7 @@ public class Programa {
                             case 6:
                             	System.out.println(bgverde +"                          VIZUALIZAR CAIXA                        \n"+ limpa);
                             	caixa.vizualizarCaixa();
-                            	
+                            	System.out.println("=======================================================================\n");
                             	sairMenu = 2;
                                     
                                     break;
