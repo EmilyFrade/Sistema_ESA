@@ -75,7 +75,7 @@ public class Programa {
                                 break;
 
                             case 3:
-                            	System.out.println(bgverde +"                              ADCIONAR DINHEIRO                               \n"+ limpa);
+                            	System.out.println(bgverde +"                          ADCIONAR DINHEIRO                            \n"+ limpa);
                                 if (caixaAberto == 1) {
                                     do {
                                         caixa.adicionarDinheiro();
@@ -91,7 +91,7 @@ public class Programa {
                                 break;
 
                             case 4:
-                            	System.out.println(bgverde +"                              SANGRIA                               \n"+ limpa);
+                            	System.out.println(bgverde +"                               SANGRIA                                 \n"+ limpa);
                                 if (caixaAberto == 1) {
                                     do {
                                         caixa.sangria();
@@ -120,8 +120,14 @@ public class Programa {
                                 System.out.println("=======================================================================\n");
                                 break;
                             case 6:
-                            	System.out.println(bgverde +"                          VIZUALIZAR CAIXA                        \n"+ limpa);
-                            	caixa.vizualizarCaixa();
+                            	System.out.println(bgverde +"                           VIZUALIZAR CAIXA                            \n"+ limpa);
+                            	
+                            	if (caixaAberto == 1) {
+                            		caixa.vizualizarCaixa();
+                                } else {
+                                    System.out.println("O caixa ainda não foi aberto");
+                                    sairMenu = 2;
+                                }
                             	System.out.println("=======================================================================\n");
                             	sairMenu = 2;
                                     
@@ -135,9 +141,9 @@ public class Programa {
                     break; 
                     
                 case 2:
-                	System.out.println("\n|                     Usuário" + verde + " comprador " + limpa +"selecionado!                   |");
+                	System.out.println("\n|                    Usuário" + verde + " comprador " + limpa +"selecionado!                   |");
 
-                    System.out.println("|______________________________________________________________________|\n");
+                    System.out.println("|_____________________________________________________________________|\n");
                     while (sairMenu == 1 || sairMenu == 2 ) {
 
                         System.out.println(verde +"[1]"+ limpa + " Cadastrar Produto \n" + verde + "[2]" + limpa
@@ -149,7 +155,7 @@ public class Programa {
                         switch (menuVendedor) {
 
                             case 1:
-                                System.out.println(bgverde +"                              CADASTRAR PRODUTO                              \n"+ limpa);
+                                System.out.println(bgverde +"                           CADASTRAR PRODUTO                           \n"+ limpa);
                                 //produto.incluirProduto();
                                 System.out.println("=======================================================================\n");
                                 do {
@@ -160,7 +166,7 @@ public class Programa {
                                 break;
 
                             case 2:
-                            	 System.out.println(bgverde +"                                EXCLUIR PRODUTO                                \n"+ limpa);
+                            	 System.out.println(bgverde +"                             EXCLUIR PRODUTO                           \n"+ limpa);
                             	//adicionar funçao produto.excluirProduto();
                                     do {
                                         
@@ -171,14 +177,14 @@ public class Programa {
                                     break;
 
                             case 3:
-                            	System.out.println(bgverde +"                              PRODUTOS COM BAIXO ESTOQUE                              \n"+ limpa);
+                            	System.out.println(bgverde +"                      PRODUTOS COM BAIXO ESTOQUE                       \n"+ limpa);
                                         //adicionar relatorio.estoqueBaixo();
                             	 System.out.println("=======================================================================\n"); 
                                     sairMenu = 2;
                                     break;
 
                             case 4:
-                            	System.out.println(bgverde +"                                REPOR ESTOQUE                                 \n"+ limpa);
+                            	System.out.println(bgverde +"                             REPOR ESTOQUE                             \n"+ limpa);
                                     do {
                                        // adicionar aqui função que repoe o estoque
                                         System.out.println("Deseja repor outro produto?\n[1] Sim \n[2] Não");
@@ -211,23 +217,25 @@ public class Programa {
                         switch (menuVendedor) {
 
                             case 1:
-                                System.out.println(bgverde +"                          DEFINIR MARGEM DE LUCRO                        \n"+ limpa);
+                                System.out.println(bgverde +"                          DEFINIR MARGEM DE LUCRO                      \n"+ limpa);
                                 //Incuir função que define margem de lucro();
                                 sairMenu = 2;
+                                System.out.println("=======================================================================\n");
                                 break;
                                 
                             case 2:
-                                System.out.println(bgverde +"                          DEFINIR ESTOQUE MÍNIMO                        \n"+ limpa);
+                                System.out.println(bgverde +"                          DEFINIR ESTOQUE MÍNIMO                       \n"+ limpa);
                                 //Incuir função que define estoque mínimo();
                                 sairMenu = 2;
+                                System.out.println("=======================================================================\n");
                                 break;
 
                             case 3:
-                            	System.out.println(bgverde +"                          RELATÓRIOS                        \n"+ limpa);
+                            	System.out.println(bgverde +"                             RELATÓRIOS                                \n"+ limpa);
                             	//adicionar funçao vizuaizar relatorios();
                             	
                             	sairMenu = 2;
-                                    
+                            	System.out.println("=======================================================================\n");   
                                     break;
 
                             case 4:
@@ -236,9 +244,16 @@ public class Programa {
                                 sair = 1;
                                 break;
                                     
-
+                            
                         }	
+                   
                     }
+                case 4:
+                	System.out.print("|======================================================================|\n");
+                	System.out.println("|                 Obrigada por usar o" + verde + " E$A"+ limpa + "! Volte sempre                |");
+                	System.out.println("|======================================================================|\n");
+                	sair = 2;
+                	break;
             }
         
         }
