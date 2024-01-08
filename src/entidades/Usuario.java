@@ -11,6 +11,8 @@ public class Usuario {
 	private String cpf_cnpj;
 	private Integer codigo;
 	
+	public Usuario() {}
+	
 	public Usuario(String nome, String numeroCelular, String cpf_cnpj) {
 		this.nome = nome;
 		this.numeroCelular = numeroCelular;

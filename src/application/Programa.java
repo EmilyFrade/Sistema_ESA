@@ -1,7 +1,9 @@
 package application;
 
 import java.util.Scanner;
+
 import entidades.Caixa;
+import entidades.Venda;
 
 public class Programa {
 
@@ -12,6 +14,7 @@ public class Programa {
         String vermelho = "\u001B[31m";
         String bgverde = "\u001B[42m";
         Caixa caixa = new Caixa();
+        Venda venda = new Venda();
         
         int sair = 1;
         int sairMenu = 1, caixaAberto = 0;
@@ -59,7 +62,7 @@ public class Programa {
                                 // Nova Venda
                             	if (caixaAberto == 1) {
                                     do {
-                                        //novaVenda;
+                                        venda.fazerVenda();
                                         System.out.println("Deseja efetuar outra venda?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
                                     } while (sairMenu == 1);
@@ -200,8 +203,8 @@ public class Programa {
                     System.out.println("|____________________________________________________________________|\n");
                     while (sairMenu == 1 || sairMenu == 2 ) {
 
-                        System.out.println(verde +"[1]"+ limpa + " Definir margem de lucro \n" + verde + "[2]" + limpa
-                        		+ " Vizualizar relatórios \n" + verde +"[3]" + limpa + " Sair \n");
+                        System.out.println(verde +"[1]"+ limpa + " Definir margem de lucro \n" + verde +"[2]"+ limpa + " Definir estoque mínimo \n" 
+                        + verde + "[3]" + limpa + " Vizualizar relatórios \n" + verde +"[4]" + limpa + " Sair \n");
 
                         int menuVendedor = sc.nextInt();
 
@@ -212,8 +215,14 @@ public class Programa {
                                 //Incuir função que define margem de lucro();
                                 sairMenu = 2;
                                 break;
-
+                                
                             case 2:
+                                System.out.println(bgverde +"                          DEFINIR ESTOQUE MÍNIMO                        \n"+ limpa);
+                                //Incuir função que define estoque mínimo();
+                                sairMenu = 2;
+                                break;
+
+                            case 3:
                             	System.out.println(bgverde +"                          RELATÓRIOS                        \n"+ limpa);
                             	//adicionar funçao vizuaizar relatorios();
                             	
@@ -221,7 +230,7 @@ public class Programa {
                                     
                                     break;
 
-                            case 3:
+                            case 4:
                                 
                             	sairMenu = 3;
                                 sair = 1;

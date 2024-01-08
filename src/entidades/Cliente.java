@@ -7,9 +7,15 @@ public class Cliente extends Usuario{
 	protected List<Cliente> clientes = new ArrayList<>();
 	
 	private Integer qtdCompras = 0;
+	
+	public Cliente() {}
 
 	public Cliente(String nome, String numeroCelular, String cpf_cnpj) {
 		super(nome, numeroCelular, cpf_cnpj);
+	}
+	
+	public List<Cliente> getClientes() {
+		return clientes;
 	}
 
 	public Integer getQtdCompras() {
