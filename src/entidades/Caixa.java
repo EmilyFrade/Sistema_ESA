@@ -25,7 +25,7 @@ public class Caixa {
 		System.out.print("Qual o valor deseja adicionar? ");
 		Double dinheiro = sc.nextDouble();
 		valor += dinheiro;
-		
+		System.out.printf("valor atual do caixa: %.2f ", valor);
 		return valor;
 	}
 	
@@ -33,7 +33,7 @@ public class Caixa {
 		System.out.print("Qual o valor da sangria? ");
 		Double sangria = sc.nextDouble();
 		valor -= sangria;
-		
+		System.out.printf("valor atual do caixa: %.2f ", valor);
 		return valor;
 	}
 	

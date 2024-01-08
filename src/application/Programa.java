@@ -250,7 +250,7 @@ public class Programa {
                     }
                 case 4:
                 	System.out.print("|======================================================================|\n");
-                	System.out.println("|                 Obrigada por usar o" + verde + " E$A"+ limpa + "! Volte sempre                |");
+                	System.out.println("|                  Obrigada por usar o" + verde + " E$A"+ limpa + "! Volte sempre               |");
                 	System.out.println("|======================================================================|\n");
                 	sair = 2;
                 	break;

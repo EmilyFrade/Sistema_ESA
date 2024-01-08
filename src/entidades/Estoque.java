@@ -49,4 +49,5 @@ public class Estoque {
 		p = new Produto("Cama Queen em MDP\n", 111.96, 3, "camas");
 		p.incluirProduto(p);
 	}
+	
 }
