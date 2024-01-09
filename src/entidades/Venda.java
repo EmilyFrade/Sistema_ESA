@@ -14,7 +14,7 @@ public class Venda {
 	private Double desconto = 0.1;
 	private Double valorTotal = 0.0;
 	
-	private List<Venda> vendas = new ArrayList<>();
+	private static List<Venda> vendas = new ArrayList<>();
 	
 	private Cliente cliente = new Cliente();
 	private Item item = new Item();
@@ -106,6 +106,7 @@ public class Venda {
 		
 		recibo();
 		
+		System.out.println();
 		System.out.println("Qual a forma de pagamento?");
 		System.out.println("[1] À vista \n[2] À prazo");
 		Integer pag = sc.nextInt();
@@ -146,15 +147,20 @@ public class Venda {
 	
 	public void recibo() {
 		System.out.println("Itens adicionados ao carrinho: ");
-		System.out.println("Código - Descrição -------------- VUnit ------ SubTotal ---------");
+		System.out.println("Descrição | Preço unitário | SubTotal");
+		System.out.println("-------------------------------------");
 		for (Item x : item.getItens()) 
-			System.out.println(x.getProduto().getCodigo() + " " + x.getProduto().getDescricao() 
-					+ " " + x.getProduto().getPrecoDeVenda() + " " + x.calcularSubtotal(x));
+			System.out.println(x.getProduto().getDescricao() + " | " 
+		+ String.format("R$%.2f", x.getProduto().getPrecoDeVenda()) + " | " 
+		+ String.format("R$%.2f", x.calcularSubtotal(x)));
 		
 		//valor total -10% desconto a vista
 	}
 	
 	public Double desconto() {
+		if (condPag.equals("À vista"))
+			valorTotal *= 0.9;
+
 		return valorTotal;
 	}
 }

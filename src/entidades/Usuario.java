@@ -9,7 +9,7 @@ public class Usuario {
 	private String cpf_cnpj;
 	private Integer codigo;
 	
-	private List<Usuario> users = new ArrayList<>();
+	private static List<Usuario> users = new ArrayList<>();
 	
 	public Usuario() {}
 	

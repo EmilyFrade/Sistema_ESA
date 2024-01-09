@@ -17,7 +17,7 @@ public class Produto {
 	private Integer qtdVendida = 0;
 	private String categoria;
 	
-	private List<Produto> produtos = new ArrayList<>();
+	private static List<Produto> produtos = new ArrayList<>();
 	
 	public Produto() {}
 	
