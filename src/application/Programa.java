@@ -44,7 +44,7 @@ public class Programa {
                         System.out.println(verde +"[1]"+ limpa + " Abrir caixa \n" + verde + "[2]" + limpa
                         		+ " Nova venda \n" + verde +"[3]" + limpa + " Adicionar dinheiro\n" + verde + "[4]" + limpa +
                         		" Fazer sangria\n" + verde + "[5]" + limpa + " Fechar caixa\n" + verde + "[6]" + limpa +" Vizualizar caixa\n" + vermelho + "[7]" + limpa + " Sair");
-
+                        
                         int menuVendedor = sc.nextInt();
 
                         switch (menuVendedor) {

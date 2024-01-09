@@ -7,8 +7,6 @@ import java.util.Scanner;
 public class Produto {
 	Scanner sc = new Scanner(System.in);
 	
-	protected List<Produto> produtos = new ArrayList<>();
-	
 	private Integer codigo;
 	private String descricao;
 	private Double precoDeCusto;
@@ -18,6 +16,8 @@ public class Produto {
 	private Integer estoqueMin = 1;
 	private Integer qtdVendida = 0;
 	private String categoria;
+	
+	private List<Produto> produtos = new ArrayList<>();
 	
 	public Produto() {}
 	
@@ -80,6 +80,10 @@ public class Produto {
 		this.categoria = categoria;
 	}
 	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
 	public void definirEstoqueMin() {
 		System.out.println("O estoque mínimo atual é " + estoqueMin);
 		System.out.println("Quanto gostaria de colocar como estoque mínimo? ");

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Venda {
+	Scanner sc = new Scanner(System.in);
+	
 	private Date data;
 	private Integer codigo;
 	private String condPag;
@@ -70,8 +72,6 @@ public class Venda {
 	}
 
 	public void fazerVenda() {
-		Scanner sc = new Scanner(System.in);
-		
 		d.clientesIniciais();
 		
 		System.out.print("Qual o CPF/CNPJ do cliente (sem pontos): ");
@@ -134,8 +134,6 @@ public class Venda {
 			vendas.add(venda);
 			codigo = vendas.indexOf(venda);
 		}
-		
-		sc.close();
 	}
 	
 	public Double calcularTotal() {

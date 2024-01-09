@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Item {
+	Scanner sc = new Scanner(System.in);
+	
 	private Integer qtd;
 	private List<Item> itens = new ArrayList<>();
 	
@@ -39,7 +41,6 @@ public class Item {
 	}
 
 	public void adicionarItem() {
-		Scanner sc = new Scanner(System.in); 
 		e.estoqueInicial();
 	
 		char c = 's';
@@ -50,7 +51,7 @@ public class Item {
 			System.out.println("Qual o código do produto que deseja adicionar ao carrinho? ");
 			Integer codigo = sc.nextInt();
 			
-			for (Produto x : produto.produtos) {
+			for (Produto x : produto.getProdutos()) {
 				if (x.getCodigo() == codigo) {
 					do {
 						System.out.println("Quantas unidades do produto deseja adicionar? ");
@@ -67,8 +68,6 @@ public class Item {
 			System.out.println("Deseja adicionar novo produto ao carrinho? (s/n)");
 			c = sc.next().charAt(0);	
 		}	
-		
-		sc.close();
 	}
 	
 	public Double calcularSubtotal(Item item) {
