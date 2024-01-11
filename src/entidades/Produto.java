@@ -12,7 +12,7 @@ public class Produto {
 	private Double precoDeCusto;
 	private Double precoDeVenda;
 	private Double porcentagemLucro = 1.6;
-	private Integer estoque;
+	private Integer estoque = 0;
 	private Integer estoqueMin = 1;
 	private Integer qtdVendida = 0;
 	private String categoria;
@@ -109,7 +109,14 @@ public class Produto {
 	public void pesquisarProduto() {
 		// chamar relatorio produtos
 	}
-	
+	public void reporEstoque() {
+		
+		if(estoque < estoqueMin) {
+			while(estoque < estoqueMin ) {
+				aumentarEstoque();
+			}
+		}
+	}
 	public void incluirProduto(Produto p) { 
 		produtos.add(p);
 		p.setCodigo(produtos.indexOf(p) + 1);

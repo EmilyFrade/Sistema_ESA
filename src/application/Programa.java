@@ -1,9 +1,12 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import entidades.Caixa;
 import entidades.Venda;
+import entidades.Produto;
 
 public class Programa {
 
@@ -15,6 +18,8 @@ public class Programa {
         String bgverde = "\u001B[42m";
         Caixa caixa = new Caixa();
         Venda venda = new Venda();
+        Produto produto = new Produto();
+     
         
         int sair = 1;
         int sairMenu = 1, caixaAberto = 0;
@@ -186,8 +191,9 @@ public class Programa {
                             case 4:
                             	System.out.println(bgverde +"                             REPOR ESTOQUE                             \n"+ limpa);
                                     do {
-                                       // adicionar aqui função que repoe o estoque
-                                        System.out.println("Deseja repor outro produto?\n[1] Sim \n[2] Não");
+                                    	
+                                    	produto.reporEstoque();
+                                        System.out.println("Deseja repor estoque novamente?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
                                     } while (sairMenu == 1);
                                     System.out.println("=======================================================================\n"); 
