@@ -51,7 +51,7 @@ public class Programa {
 
                             case 1:
                                 System.out.println(bgverde +"                              ABRIR CAIXA                              \n"+ limpa);
-                                caixa.abrirCaixa();
+                                caixa.abrirCaixa(caixa);
                                 System.out.println("=======================================================================\n");
                                 caixaAberto = 1;
                                 sairMenu = 2;
@@ -63,8 +63,11 @@ public class Programa {
                             	if (caixaAberto == 1) {
                                     do {
                                         venda.fazerVenda();
+                                        caixa.adicionarDinheiro(venda.getValorTotal());
+                                        caixa.vizualizarCaixa();
                                         System.out.println("Deseja efetuar outra venda?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
+                                		sc.nextLine();
                                     } while (sairMenu == 1);
                                     
                                 } else {
@@ -78,7 +81,8 @@ public class Programa {
                             	System.out.println(bgverde +"                          ADCIONAR DINHEIRO                            \n"+ limpa);
                                 if (caixaAberto == 1) {
                                     do {
-                                        caixa.adicionarDinheiro();
+                                    	System.out.print("Qual o valor deseja adicionar? ");
+                                        System.out.printf("Valor atual do caixa: R$%.2f", caixa.adicionarDinheiro(sc.nextDouble()));
                                         System.out.println("\n\nDeseja adicionar mais dinheiro?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
                                     } while (sairMenu == 1);

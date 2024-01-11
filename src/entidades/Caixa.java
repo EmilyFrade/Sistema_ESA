@@ -11,22 +11,18 @@ public class Caixa {
 		return valor;
 	}
 
-	public Integer abrirCaixa() {
+	public Integer abrirCaixa(Caixa caixa) {
 		System.out.print("Valor inicial do caixa: ");
 		Double v = sc.nextDouble();
 		valor = v;
 		
 		System.out.printf("O caixa foi aberto com R$%.2f \n\n", valor);
-	
+		
 		return 1;
 	}
 	
-	public Double adicionarDinheiro() {
-		System.out.print("Qual o valor deseja adicionar? ");
-		Double dinheiro = sc.nextDouble();
+	public Double adicionarDinheiro(Double dinheiro) {
 		valor += dinheiro;
-		System.out.printf("Valor atual do caixa: %.2f", valor);
-		
 		return valor;
 	}
 	
