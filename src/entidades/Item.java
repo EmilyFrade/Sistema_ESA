@@ -11,7 +11,6 @@ public class Item {
 	private static List<Item> itens = new ArrayList<>();
 	
 	private Produto produto = new Produto();
-	private Estoque e = new Estoque();
 	
 	public Item() {}
 	
@@ -36,18 +35,10 @@ public class Item {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
 	public void adicionarItem() {
-		e.estoqueInicial();
-	
 		char c = 's';
 		
 		while (c == 's' || c == 'S' ) {
-			//relatorio produtos disponiveis
-			
 			System.out.print("Qual o código do produto que deseja adicionar ao carrinho? ");
 			Integer codigo = sc.nextInt();
 			

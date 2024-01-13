@@ -106,10 +106,6 @@ public class Produto {
 		estoque++;
 	}
 	
-	public void pesquisarProduto() {
-		// chamar relatorio produtos
-	}
-	
 	public void incluirProduto(Produto p) { 
 		produtos.add(p);
 		p.setCodigo(produtos.indexOf(p) + 1);

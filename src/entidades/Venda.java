@@ -12,14 +12,13 @@ public class Venda {
 	private Integer codigo;
 	private String condPag;
 	private Double desconto = 0.1;
-	private Double valorTotal = 0.0;
+	private Double valorTotal;
 	
 	private static List<Venda> vendas = new ArrayList<>();
 	
 	private Cliente cliente = new Cliente();
 	private Item item = new Item();
-	private DadosClientes d = new DadosClientes();
-	private Produto produto = new Produto();
+	private Relatorios r = new Relatorios();
 	
 	public Venda() {}
 	
@@ -73,7 +72,7 @@ public class Venda {
 	}
 
 	public void fazerVenda() {
-		d.clientesIniciais();
+		valorTotal = 0.0;
 		
 		System.out.print("Qual o CPF/CNPJ do cliente (sem pontos): ");
 		String cpf = sc.nextLine();
@@ -103,6 +102,7 @@ public class Venda {
 			
 		Venda venda = new Venda(new Date(), temp);
 		
+		r.relatorioProdutosVendas();
 		item.adicionarItem();
 		
 		recibo();
@@ -124,7 +124,7 @@ public class Venda {
 		venda.valorTotal = calcularTotal();
 		valorTotal = venda.valorTotal;
 		System.out.println();
-		System.out.printf("Valor total da compra: R$%.2f", venda.valorTotal);
+		System.out.printf("Valor total da compra: R$%.2f \n", venda.valorTotal);
 		
 		System.out.println();
 		System.out.print("Deseja finalizar a compra (s/n)? ");
@@ -132,7 +132,7 @@ public class Venda {
 		sc.nextLine();
 		
 		if (finalizar == 's' || finalizar == 'S') {
-			System.out.println("Compra realizada com sucesso");
+			System.out.println("Compra realizada com sucesso \n");
 			temp.adicionarCompra();
 			
 			for (Item y : item.getItens()) {
@@ -143,21 +143,12 @@ public class Venda {
 			vendas.add(venda);
 			codigo = vendas.indexOf(venda);
 		} 
-		else if (finalizar == 'n' || finalizar == 'N')
-			System.out.println("Compra cancelada");
-		
-		
-		for (Cliente x : cliente.getClientes()) {
-			System.out.println(x.getNome() + " - " + x.getQtdCompras());
+		else if (finalizar == 'n' || finalizar == 'N') {
+			System.out.println("Compra cancelada \n");
+			valorTotal = 0.0;
 		}
 		
-		for (Produto x : produto.getProdutos()) {
-			System.out.println(x.getDescricao() + " - " + x.getEstoque());
-		}
-		
-		for (Venda x : venda.getVendas()) {
-			System.out.println(x.getData() + " - " + x.getCondPag() + " - " + x.getValorTotal());
-		}
+		item.getItens().clear();
 	}
 	
 	public Double calcularTotal() {

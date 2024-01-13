@@ -36,12 +36,11 @@ public class Caixa {
 	}
 	
 	public Integer fecharCaixa() {
-		System.out.print("Deseja realmente fechar o caixa? (s/n)");
+		System.out.print("Deseja realmente fechar o caixa (s/n)? ");
 		char c = sc.next().charAt(0);
 		
 		if (c == 's' || c == 'S') {
-			System.out.printf("O caixa foi fechado com R$%.2f \n\n", valor);
-			sc.close();
+			System.out.printf("O caixa foi fechado com R$%.2f \n", valor);
 			
 			return 0;
 		}
