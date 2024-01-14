@@ -12,13 +12,13 @@ public class Venda {
 	private Integer codigo;
 	private String condPag;
 	private Double desconto = 0.1;
-	private Double valorTotal = 0.0;
+	private Double valorTotal;
 	
 	private static List<Venda> vendas = new ArrayList<>();
 	
 	private Cliente cliente = new Cliente();
 	private Item item = new Item();
-	private DadosClientes d = new DadosClientes();
+	private Relatorios r = new Relatorios();
 	
 	public Venda() {}
 	
@@ -72,7 +72,7 @@ public class Venda {
 	}
 
 	public void fazerVenda() {
-		d.clientesIniciais();
+		valorTotal = 0.0;
 		
 		System.out.print("Qual o CPF/CNPJ do cliente (sem pontos): ");
 		String cpf = sc.nextLine();
@@ -102,6 +102,7 @@ public class Venda {
 			
 		Venda venda = new Venda(new Date(), temp);
 		
+		r.relatorioProdutosVendas();
 		item.adicionarItem();
 		
 		recibo();
@@ -111,21 +112,28 @@ public class Venda {
 		System.out.println("[1] À vista \n[2] À prazo");
 		Integer pag = sc.nextInt();
 
-		if (pag == 1)
-			condPag = "À vista";
-		else if (pag == 2)
-			condPag = "À prazo";
-		else
+		if (pag == 1) {
+			venda.condPag = "À vista";
+			condPag = venda.getCondPag();
+		} else if (pag == 2) {
+			venda.condPag = "À prazo";
+			condPag = venda.getCondPag();
+		} else
 			System.out.println("Número inválido.");
+	
+		venda.valorTotal = calcularTotal();
+		valorTotal = venda.valorTotal;
+		System.out.println();
+		System.out.printf("Valor total da compra: R$%.2f \n", venda.valorTotal);
 		
-		System.out.println("Valor total da compra: R$" + valorTotal);
-		
-		System.out.println("Deseja finalizar a compra? (s/n)");
+		System.out.println();
+		System.out.print("Deseja finalizar a compra (s/n)? ");
 		char finalizar = sc.next().charAt(0);
+		sc.nextLine();
 		
 		if (finalizar == 's' || finalizar == 'S') {
-			System.out.println("Compra realizada com sucesso");
-			cliente.adicionarCompra();
+			System.out.println("Compra realizada com sucesso \n");
+			temp.adicionarCompra();
 			
 			for (Item y : item.getItens()) {
 				for (int i = 0; i < y.getQtd(); i++)
@@ -134,13 +142,22 @@ public class Venda {
 			
 			vendas.add(venda);
 			codigo = vendas.indexOf(venda);
+		} 
+		else if (finalizar == 'n' || finalizar == 'N') {
+			System.out.println("Compra cancelada \n");
+			valorTotal = 0.0;
 		}
+		
+		item.getItens().clear();
 	}
 	
 	public Double calcularTotal() {
 		for (Item x : item.getItens()) {
 			valorTotal += x.calcularSubtotal(x);
 		}
+		
+		if (condPag.equals("À vista"))
+			valorTotal *= 0.9;
 		
 		return valorTotal;
 	}
@@ -153,15 +170,6 @@ public class Venda {
 			System.out.println(x.getProduto().getDescricao() + " | " 
 		+ String.format("R$%.2f", x.getProduto().getPrecoDeVenda()) + " | " 
 		+ String.format("R$%.2f", x.calcularSubtotal(x)));
-		
-		//valor total -10% desconto a vista
-	}
-	
-	public Double desconto() {
-		if (condPag.equals("À vista"))
-			valorTotal *= 0.9;
-
-		return valorTotal;
 	}
 }
 

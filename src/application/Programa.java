@@ -1,26 +1,33 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import entidades.Caixa;
+import entidades.DadosClientes;
+import entidades.Estoque;
+import entidades.Relatorios;
 import entidades.Venda;
-import entidades.Produto;
 
 public class Programa {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        
         String verde = "\u001B[32m";
         String limpa = "\u001B[0m";
         String vermelho = "\u001B[31m";
         String bgverde = "\u001B[42m";
+        
         Caixa caixa = new Caixa();
         Venda venda = new Venda();
-        Produto produto = new Produto();
-     
+        DadosClientes d = new DadosClientes();
+        Estoque e = new Estoque();
+        Relatorios r = new Relatorios();
         
+        d.clientesIniciais();
+        e.estoqueInicial();
+
+  
         int sair = 1;
         int sairMenu = 1, caixaAberto = 0;
 
@@ -48,7 +55,8 @@ public class Programa {
 
                         System.out.println(verde +"[1]"+ limpa + " Abrir caixa \n" + verde + "[2]" + limpa
                         		+ " Nova venda \n" + verde +"[3]" + limpa + " Adicionar dinheiro\n" + verde + "[4]" + limpa +
-                        		" Fazer sangria\n" + verde + "[5]" + limpa + " Fechar caixa\n" + verde + "[6]" + limpa +" Vizualizar caixa\n" + vermelho + "[7]" + limpa + " Sair");
+                        		" Fazer sangria\n" + verde + "[5]" + limpa + " Fechar caixa\n" + verde + "[6]" + limpa + 
+                        		" Vizualizar caixa\n" + verde + "[7]" + limpa + " Pesquisar produto\n" + vermelho + "[8]" + limpa + " Sair");
                         
                         int menuVendedor = sc.nextInt();
 
@@ -56,20 +64,25 @@ public class Programa {
 
                             case 1:
                                 System.out.println(bgverde +"                              ABRIR CAIXA                              \n"+ limpa);
-                                caixa.abrirCaixa();
+                                if (caixaAberto == 1)
+                                	System.out.println("O caixa já foi aberto");
+                                else
+                                	caixa.abrirCaixa(caixa);
                                 System.out.println("=======================================================================\n");
                                 caixaAberto = 1;
                                 sairMenu = 2;
                                 break;
 
                             case 2:
-                            	 System.out.println(bgverde +"                              NOVA VENDA                               \n"+ limpa);
-                                // Nova Venda
+                            	System.out.println(bgverde +"                              NOVA VENDA                               \n"+ limpa);
                             	if (caixaAberto == 1) {
                                     do {
                                         venda.fazerVenda();
+                                        caixa.adicionarDinheiro(venda.getValorTotal());
                                         System.out.println("Deseja efetuar outra venda?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
+                                		sc.nextLine();
+                                		System.out.println();
                                     } while (sairMenu == 1);
                                     
                                 } else {
@@ -83,7 +96,8 @@ public class Programa {
                             	System.out.println(bgverde +"                          ADCIONAR DINHEIRO                            \n"+ limpa);
                                 if (caixaAberto == 1) {
                                     do {
-                                        caixa.adicionarDinheiro();
+                                    	System.out.print("Qual o valor deseja adicionar? ");
+                                        System.out.printf("Valor atual do caixa: R$%.2f", caixa.adicionarDinheiro(sc.nextDouble()));
                                         System.out.println("\n\nDeseja adicionar mais dinheiro?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
                                     } while (sairMenu == 1);
@@ -114,11 +128,10 @@ public class Programa {
                             case 5:
                             	System.out.println(bgverde +"                              ABRIR CAIXA                              \n"+ limpa);
                                 if (caixaAberto == 1) {
-                                   
                                        caixa.fecharCaixa();
-                                        sairMenu = 2;
+                                       caixaAberto = 0;
+                                       sairMenu = 2;
                                 } else {
-                                	
                                     System.out.println("O caixa já está fechado");
                                     sairMenu = 2;
                                 }
@@ -138,9 +151,17 @@ public class Programa {
                                     
                                     break;
                             case 7:
+                            	System.out.println();
+                            	r.relatorioProdutosVendas();
+                            	break;
+                            	
+                            case 8:
                                 sairMenu = 3;
                                 sair = 1;
                                 break;
+                            
+                            default:
+                            	System.out.println("Entrada inválida \n");
                         }
                     }
                     break; 
@@ -192,7 +213,6 @@ public class Programa {
                             	System.out.println(bgverde +"                             REPOR ESTOQUE                             \n"+ limpa);
                                     do {
                                     	
-                                    	produto.reporEstoque();
                                         System.out.println("Deseja repor estoque novamente?\n[1] Sim \n[2] Não");
                                         sairMenu = sc.nextInt();
                                     } while (sairMenu == 1);
@@ -201,11 +221,12 @@ public class Programa {
                                 break;
 
                             case 5:
-                            	
                             	sairMenu = 3;
                                 sair = 1;
                                 break;
-                  
+                           
+                            default:
+                            	System.out.println("Entrada inválida \n");
                     }	
             }
                 case 3:
@@ -245,12 +266,12 @@ public class Programa {
                                     break;
 
                             case 4:
-                                
                             	sairMenu = 3;
                                 sair = 1;
                                 break;
                                     
-                            
+                            default:
+                            	System.out.println("Entrada inválida \n");
                         }	
                    
                     }
@@ -260,6 +281,9 @@ public class Programa {
                 	System.out.println("|======================================================================|\n");
                 	sair = 2;
                 	break;
+                
+                default:
+                	System.out.println("Entrada inválida");
             }
         
         }

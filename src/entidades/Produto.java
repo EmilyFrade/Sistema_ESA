@@ -106,11 +106,8 @@ public class Produto {
 		estoque++;
 	}
 	
-	public void pesquisarProduto() {
-		// chamar relatorio produtos
-	}
 	public void reporEstoque() {
-		
+	
 		if(estoque < estoqueMin) {
 			while(estoque < estoqueMin ) {
 				aumentarEstoque();
