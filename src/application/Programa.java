@@ -5,6 +5,7 @@ import java.util.Scanner;
 import entidades.Caixa;
 import entidades.DadosClientes;
 import entidades.Estoque;
+import entidades.Produto;
 import entidades.Relatorios;
 import entidades.Venda;
 
@@ -23,11 +24,11 @@ public class Programa {
         DadosClientes d = new DadosClientes();
         Estoque e = new Estoque();
         Relatorios r = new Relatorios();
+        Produto p = new Produto();
         
         d.clientesIniciais();
         e.estoqueInicial();
-
-  
+ 
         int sair = 1;
         int sairMenu = 1, caixaAberto = 0;
         
@@ -217,8 +218,6 @@ public class Programa {
 
                             case 4:
                             	System.out.println(bgverde +"                             REPOR ESTOQUE                             \n"+ limpa);
-                                 
-
                             	do {
                             		// adicionar aqui função que repoe o estoque
                                     System.out.println("Deseja repor outro produto?\n[1] Sim \n[2] Não");
@@ -247,14 +246,14 @@ public class Programa {
                         System.out.println(verde +"[1]"+ limpa + " Definir margem de lucro \n" + verde +
                         		"[2]" + limpa + " Definir estoque mínimo \n" + verde + 
                         		"[3]" + limpa + " Vizualizar relatórios \n" + vermelho +
-                        		"[4]" + limpa + " Sair \n");
+                        		"[4]" + limpa + " Sair");
 
                         int menuVendedor = sc.nextInt();
 
                         switch (menuVendedor) {
                             case 1:
                                 System.out.println(bgverde +"                          DEFINIR MARGEM DE LUCRO                      \n"+ limpa);
-                                //Incuir função que define margem de lucro();
+                                p.definirPorcenLucro();
                                 sairMenu = 2;
                                 System.out.println("=======================================================================\n");
                                 break;

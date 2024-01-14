@@ -11,7 +11,7 @@ public class Produto {
 	private String descricao;
 	private Double precoDeCusto;
 	private Double precoDeVenda;
-	private Double porcentagemLucro = 1.6;
+	private Double margemLucro = 1.6;
 	private Integer estoque = 0;
 	private Integer estoqueMin = 1;
 	private Integer qtdVendida = 0;
@@ -53,7 +53,7 @@ public class Produto {
 	}
 
 	public Double getPorcentagemLucro() {
-		return porcentagemLucro;
+		return margemLucro;
 	}
 
 	public Double getPrecoDeVenda() {
@@ -92,10 +92,13 @@ public class Produto {
 	}
 	
 	public void definirPorcenLucro() {
-		System.out.println("A porcentagem de lucro atual é " + porcentagemLucro * 100);
-		System.out.println("Quanto gostaria de colocar como porcentagem de lucro? ");
-		porcentagemLucro = sc.nextDouble() / 100;
-		System.out.println("Porcentagem de lucro atualizada: " + porcentagemLucro * 100);
+		System.out.println("A margem de lucro atual é " + margemLucro);
+		System.out.print("Quanto gostaria de colocar como margem de lucro? ");
+		margemLucro = sc.nextDouble();
+		System.out.println("Margem de lucro atualizada: " + margemLucro);
+		
+		for (Produto x : produtos)
+			x.precoDeVenda = calculaPrecoVenda(x);
 	}
 	
 	public void diminuirEstoque() {
@@ -107,20 +110,20 @@ public class Produto {
 	}
 	
 	public void reporEstoque() {
-	
 		if(estoque < estoqueMin) {
 			while(estoque < estoqueMin ) {
 				aumentarEstoque();
 			}
 		}
 	}
+	
 	public void incluirProduto(Produto p) { 
 		produtos.add(p);
 		p.setCodigo(produtos.indexOf(p) + 1);
-		p.precoDeVenda = calculaPrecoVenda();
+		p.precoDeVenda = calculaPrecoVenda(p);
 	}
 	
-	public Double calculaPrecoVenda() {
-		return precoDeCusto * porcentagemLucro;
+	public Double calculaPrecoVenda(Produto p) {
+		return p.precoDeCusto * margemLucro;
 	}
 }
