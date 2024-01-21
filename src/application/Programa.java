@@ -178,8 +178,7 @@ public class Programa {
 				break;
 
 			case 2:
-				System.out.println("\n|                    Usuário" + verde + " comprador " + limpa
-						+ "selecionado!                   |");
+				System.out.println("\n|                    Usuário" + verde + " comprador " + limpa + "selecionado!                   |");
 				System.out.println("|_____________________________________________________________________|\n");
 
 				while (sairMenu == 1 || sairMenu == 2) {
@@ -193,7 +192,7 @@ public class Programa {
 					case 1:
 						System.out.println(bgverde
 								+ "                           CADASTRAR PRODUTO                           \n" + limpa);
-						// produto.incluirProduto();
+						p.cadastrarProduto();
 						System.out.println("=======================================================================\n");
 
 						do {
@@ -207,7 +206,9 @@ public class Programa {
 					case 2:
 						System.out.println(bgverde
 								+ "                             EXCLUIR PRODUTO                           \n" + limpa);
-						// adicionar funçao produto.excluirProduto();
+						r.relatorioProdutos();
+						p.excluirProduto();
+						System.out.println("=======================================================================\n");
 
 						do {
 							System.out.println("Deseja excluir outro produto?\n[1] Sim \n[2] Não");
@@ -250,8 +251,7 @@ public class Programa {
 				break;
 
 			case 3:
-				System.out.println("\n|                     Usuário" + verde + " gerente " + limpa
-						+ "selecionado!                   |");
+				System.out.println("\n|                     Usuário" + verde + " gerente " + limpa + "selecionado!                   |");
 				System.out.println("|____________________________________________________________________|\n");
 
 				while (sairMenu == 1 || sairMenu == 2) {
@@ -281,14 +281,14 @@ public class Programa {
 					case 3:
 						System.out.println(bgverde
 								+ "                             RELATÓRIOS                                \n" + limpa);
-						System.out.println(verde + "[1]" + limpa + " Produtos disponíveis \n" + verde + "[2]" + limpa
+						System.out.println(verde + "[1]" + limpa + " Produtos cadastrados \n" + verde + "[2]" + limpa
 								+ " Produtos com baixo estoque \n" + verde + "[3]" + limpa + " Produtos vendidos \n"
 								+ vermelho + "[4]" + limpa + " Sair");
 						escolha = sc.nextInt();
 						switch(escolha) {
 						
 						case 1:
-							r.relatorioProdutosVendas();
+							r.relatorioProdutos();
 							sairMenu = 2;
 						break;
 						case 2:

@@ -179,7 +179,7 @@ public class Venda {
 
 	public static void relatorioVendasFinalizadas() {
 		System.out.println("Relatório de Vendas Finalizadas:");
-		System.out.println("------------------------------");
+		System.out.println("--------------------------------");
 		double valorTotalDoDia = 0.0;
 
 		Calendar dataAtual = Calendar.getInstance();

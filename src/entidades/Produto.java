@@ -11,9 +11,9 @@ public class Produto {
 	private String descricao;
 	private Double precoDeCusto;
 	private Double precoDeVenda;
-	private Double margemLucro = 1.6;
+	private Double margemLucro = 2.1;
 	private Integer estoque = 0;
-	public Integer estoqueMin = 1;
+	private Integer estoqueMin = 1;
 	private Integer qtdVendida = 0;
 	private String categoria;
 
@@ -116,6 +116,30 @@ public class Produto {
 				aumentarEstoque();
 			}
 		}
+	}
+	
+	public void cadastrarProduto() {
+		System.out.print("Descrição do novo produto: ");
+		String desc = sc.nextLine();
+		System.out.print("Preço de custo do produto: ");
+		Double preco = sc.nextDouble();
+		sc.nextLine();
+		System.out.print("Categoria do produto: ");
+		String cat = sc.nextLine();
+		
+		Produto p = new Produto(desc, preco, estoque, cat);
+		incluirProduto(p);
+		
+		System.out.println("\nProduto cadastrado com sucesso!");
+	}
+	
+	public void excluirProduto() {
+		System.out.print("Código do produto que deseja excluir: ");
+		Integer codigo = sc.nextInt();
+		
+		produtos.remove(codigo - 1);
+		
+		System.out.println("\nProduto excluído com sucesso!");
 	}
 
 	public void incluirProduto(Produto p) {

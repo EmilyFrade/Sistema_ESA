@@ -32,19 +32,19 @@ public class Estoque {
 		p = new Produto("Armário Estante 2 Portas Vidro", 229.64, 3, "Armários");
 		p.incluirProduto(p);
 
-		p = new Produto("Cama Articulada de Casal", 239.95, 5, "camas");
+		p = new Produto("Cama Articulada de Casal", 239.95, 5, "Camas");
 		p.incluirProduto(p);
 
-		p = new Produto("Cama Box Baú Casal", 226.00, 2, "camas");
+		p = new Produto("Cama Box Baú Casal", 226.00, 2, "Camas");
 		p.incluirProduto(p);
 
-		p = new Produto("Cama de Solteiro 2 Gavetas", 279.60, 3, "camas");
+		p = new Produto("Cama de Solteiro 2 Gavetas", 279.60, 3, "Camas");
 		p.incluirProduto(p);
 
-		p = new Produto("Cama Casal com 2 Sapateiras", 225.00, 3, "camas");
+		p = new Produto("Cama Casal com 2 Sapateiras", 225.00, 3, "Camas");
 		p.incluirProduto(p);
 
-		p = new Produto("Cama Queen", 111.96, 3, "camas");
+		p = new Produto("Cama Queen", 111.96, 3, "Camas");
 		p.incluirProduto(p);
 	}
 
