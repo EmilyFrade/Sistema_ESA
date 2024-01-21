@@ -109,15 +109,16 @@ public class Produto {
 	public void aumentarEstoque() {
 		estoque++;
 	}
-
+	
 	public void reporEstoque() {
-		if (estoque < estoqueMin) {
-			while (estoque < estoqueMin) {
-				aumentarEstoque();
+		for(Produto x : getProdutos()) {
+			if(x.getEstoque() <=  x.getEstoqueMin()) {
+				while(x.getEstoque() <= x.getEstoqueMin())
+				x.aumentarEstoque();
 			}
 		}
 	}
-	
+
 	public void cadastrarProduto() {
 		System.out.print("Descrição do novo produto: ");
 		String desc = sc.nextLine();

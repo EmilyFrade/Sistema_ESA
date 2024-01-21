@@ -232,8 +232,9 @@ public class Programa {
 						System.out.println(bgverde
 								+ "                             REPOR ESTOQUE                             \n" + limpa);
 						do {
-							// adicionar aqui função que repoe o estoque
-							System.out.println("Deseja repor outro produto?\n[1] Sim \n[2] Não");
+							
+							p.reporEstoque();
+							System.out.println("Os produtos com baixo estoque foram repostos. \n[2] Retornar para o menu" );
 							sairMenu = sc.nextInt();
 						} while (sairMenu == 1);
 
