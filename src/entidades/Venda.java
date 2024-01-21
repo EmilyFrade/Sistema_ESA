@@ -19,11 +19,11 @@ public class Venda {
 	private static List<Venda> vendas = new ArrayList<>();
 
 	private Cliente cliente = new Cliente();
-	public Item item = new Item();
+	public static Item item = new Item();
 	private Relatorios r = new Relatorios();
 
 	public Venda() {
-	
+
 	}
 
 	public Venda(Date data, Cliente client) {
@@ -171,10 +171,12 @@ public class Venda {
 		System.out.println("Itens adicionados ao carrinho: ");
 		System.out.println("Descrição | Preço unitário | SubTotal");
 		System.out.println("-------------------------------------");
-		for (Item x : item.getItens())
+
+		for (Item x : Venda.item.getItens()) {
 			System.out.println(
 					x.getProduto().getDescricao() + " | " + String.format("R$%.2f", x.getProduto().getPrecoDeVenda())
 							+ " | " + String.format("R$%.2f", x.calcularSubtotal(x)));
+		}
 	}
 
 	public static void relatorioVendasFinalizadas() {
@@ -198,19 +200,19 @@ public class Venda {
 				System.out.println("Forma de Pagamento: " + venda.getCondPag());
 				System.out.println("Itens da Venda:");
 
-				for (Item item : venda.item.getItens()) {
-					System.out.println("  - Produto: " + item.getProduto().getDescricao());
-					System.out.println("    Valor: R$" + String.format("%.2f", item.getProduto().getPrecoDeVenda()));
-					System.out.println("    Subtotal: R$" + String.format("%.2f", item.calcularSubtotal(item)));
+				for (Item x : item.getItens()) {
+					System.out.println(x.getProduto().getDescricao() + " | "
+							+ String.format("R$%.2f", x.getProduto().getPrecoDeVenda()) + " | "
+							+ String.format("R$%.2f", x.calcularSubtotal(x)));
+
+					System.out.println("Valor Total da Venda: R$" + String.format("%.2f", venda.getValorTotal()));
+					System.out.println("----------------------------------");
+
+					valorTotalDoDia += venda.getValorTotal();
+
+					System.out.println(
+							"Valor Total de Todas as Vendas do Dia: R$" + String.format("%.2f", valorTotalDoDia));
 				}
-
-				System.out.println("Valor Total da Venda: R$" + String.format("%.2f", venda.getValorTotal()));
-				System.out.println("----------------------------------");
-
-				valorTotalDoDia += venda.getValorTotal();
-
-				System.out
-						.println("Valor Total de Todas as Vendas do Dia: R$" + String.format("%.2f", valorTotalDoDia));
 			}
 		}
 	}

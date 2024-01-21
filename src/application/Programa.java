@@ -161,8 +161,9 @@ public class Programa {
 						break;
 
 					case 7:
-						System.out.println(bgverde
-								+ "                                 PRODUTOS                                \n" + limpa);
+						System.out.println(
+								bgverde + "                                 PRODUTOS                                \n"
+										+ limpa);
 						r.relatorioProdutosVendas();
 						break;
 
@@ -182,7 +183,7 @@ public class Programa {
 				System.out.println("|_____________________________________________________________________|\n");
 
 				while (sairMenu == 1 || sairMenu == 2) {
-					System.out.println(verde + "[1]" + limpa + " Cadastrar Produto \n" + verde + "[2]" + limpa
+					System.out.println(verde + "[1]" + limpa + " Cadastrar produto \n" + verde + "[2]" + limpa
 							+ " Excluir produto \n" + verde + "[3]" + limpa + " Vizualizar produtos em baixo estoque \n"
 							+ verde + "[4]" + limpa + " Repor estoque\n" + vermelho + "[5]" + limpa + " Sair");
 
@@ -285,16 +286,16 @@ public class Programa {
 								+ " Produtos com baixo estoque \n" + verde + "[3]" + limpa + " Produtos vendidos \n"
 								+ vermelho + "[4]" + limpa + " Sair");
 						escolha = sc.nextInt();
-						switch(escolha) {
-						
+						switch (escolha) {
+
 						case 1:
 							r.relatorioProdutos();
 							sairMenu = 2;
-						break;
+							break;
 						case 2:
 							r.relatorioProdutosEstoqueMin();
 							sairMenu = 2;
-						break;
+							break;
 						case 3:
 							Venda.relatorioVendasFinalizadas();
 						}
