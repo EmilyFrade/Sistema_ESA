@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Calendar;
 
 public class Venda {
 	Scanner sc = new Scanner(System.in);
@@ -13,19 +14,23 @@ public class Venda {
 	private String condPag;
 	private Double desconto = 0.1;
 	private Double valorTotal;
+	private static int ultimoCodigo = 0;
 
 	private static List<Venda> vendas = new ArrayList<>();
 
 	private Cliente cliente = new Cliente();
-	private Item item = new Item();
+	public Item item = new Item();
 	private Relatorios r = new Relatorios();
 
 	public Venda() {
+	
 	}
 
 	public Venda(Date data, Cliente client) {
+		this.codigo = ++ultimoCodigo;
 		this.data = data;
 		this.cliente = client;
+
 	}
 
 	public Date getData() {
@@ -170,5 +175,43 @@ public class Venda {
 			System.out.println(
 					x.getProduto().getDescricao() + " | " + String.format("R$%.2f", x.getProduto().getPrecoDeVenda())
 							+ " | " + String.format("R$%.2f", x.calcularSubtotal(x)));
+	}
+
+	public static void relatorioVendasFinalizadas() {
+		System.out.println("Relatório de Vendas Finalizadas:");
+		System.out.println("------------------------------");
+		double valorTotalDoDia = 0.0;
+
+		Calendar dataAtual = Calendar.getInstance();
+
+		for (Venda venda : vendas) {
+
+			Calendar dataVenda = Calendar.getInstance();
+			dataVenda.setTime(venda.getData());
+
+			if (dataAtual.get(Calendar.DAY_OF_YEAR) == dataVenda.get(Calendar.DAY_OF_YEAR)
+					&& dataAtual.get(Calendar.YEAR) == dataVenda.get(Calendar.YEAR)) {
+
+				System.out.println("Código da Venda: " + venda.getCodigo());
+				System.out.println("Data da Venda: " + venda.getData());
+				System.out.println("Cliente: " + venda.getCliente().getNome());
+				System.out.println("Forma de Pagamento: " + venda.getCondPag());
+				System.out.println("Itens da Venda:");
+
+				for (Item item : venda.item.getItens()) {
+					System.out.println("  - Produto: " + item.getProduto().getDescricao());
+					System.out.println("    Valor: R$" + String.format("%.2f", item.getProduto().getPrecoDeVenda()));
+					System.out.println("    Subtotal: R$" + String.format("%.2f", item.calcularSubtotal(item)));
+				}
+
+				System.out.println("Valor Total da Venda: R$" + String.format("%.2f", venda.getValorTotal()));
+				System.out.println("----------------------------------");
+
+				valorTotalDoDia += venda.getValorTotal();
+
+				System.out
+						.println("Valor Total de Todas as Vendas do Dia: R$" + String.format("%.2f", valorTotalDoDia));
+			}
+		}
 	}
 }

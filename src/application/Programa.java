@@ -30,7 +30,7 @@ public class Programa {
 		e.estoqueInicial();
 
 		int sair = 1;
-		int sairMenu = 1, caixaAberto = 0;
+		int sairMenu = 1, caixaAberto = 0, escolha = 0;
 
 		System.out.print("|======================================================================|\n");
 		System.out.println(
@@ -40,7 +40,7 @@ public class Programa {
 		while (sair == 1) {
 			sairMenu = 1;
 			System.out.println(
-					bgverde + "                          SELECIONAR USUÁRIO                            " + limpa);
+					bgverde + "                          SELECIONAR USUÁRIO                           " + limpa);
 			System.out.println();
 			System.out.println(verde + "[1]" + limpa + " Vendedor");
 			System.out.println(verde + "[2]" + limpa + " Comprador");
@@ -161,7 +161,8 @@ public class Programa {
 						break;
 
 					case 7:
-						System.out.println();
+						System.out.println(bgverde
+								+ "                                 PRODUTOS                                \n" + limpa);
 						r.relatorioProdutosVendas();
 						break;
 
@@ -280,7 +281,23 @@ public class Programa {
 					case 3:
 						System.out.println(bgverde
 								+ "                             RELATÓRIOS                                \n" + limpa);
-						// adicionar funçao vizuaizar relatorios();
+						System.out.println(verde + "[1]" + limpa + " Produtos disponíveis \n" + verde + "[2]" + limpa
+								+ " Produtos com baixo estoque \n" + verde + "[3]" + limpa + " Produtos vendidos \n"
+								+ vermelho + "[4]" + limpa + " Sair");
+						escolha = sc.nextInt();
+						switch(escolha) {
+						
+						case 1:
+							r.relatorioProdutosVendas();
+							sairMenu = 2;
+						break;
+						case 2:
+							r.relatorioProdutosEstoqueMin();
+							sairMenu = 2;
+						break;
+						case 3:
+							Venda.relatorioVendasFinalizadas();
+						}
 						sairMenu = 2;
 						System.out.println("=======================================================================\n");
 						break;
