@@ -128,4 +128,3 @@ public class Produto {
 		return p.precoDeCusto * margemLucro;
 	}
 }
-
