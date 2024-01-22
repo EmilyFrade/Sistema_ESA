@@ -19,8 +19,7 @@ public class Produto {
 
 	private static List<Produto> produtos = new ArrayList<>();
 
-	public Produto() {
-	}
+	public Produto() {}
 
 	public Produto(String descricao, Double precoDeCusto, Integer estoque, String categoria) {
 		this.descricao = descricao;
@@ -87,7 +86,7 @@ public class Produto {
 
 	public void definirEstoqueMin() {
 		System.out.println("O estoque mínimo atual é " + estoqueMin);
-		System.out.println("Quanto gostaria de colocar como estoque mínimo? ");
+		System.out.print("Quanto gostaria de colocar como estoque mínimo? ");
 		estoqueMin = sc.nextInt();
 		System.out.println("Estoque mínimo atualizado: " + estoqueMin + " unidades.");
 	}
@@ -108,15 +107,6 @@ public class Produto {
 
 	public void aumentarEstoque() {
 		estoque++;
-	}
-	
-	public void reporEstoque() {
-		for(Produto x : getProdutos()) {
-			if(x.getEstoque() <=  x.getEstoqueMin()) {
-				while(x.getEstoque() <= x.getEstoqueMin())
-				x.aumentarEstoque();
-			}
-		}
 	}
 
 	public void cadastrarProduto() {
@@ -151,5 +141,14 @@ public class Produto {
 
 	public Double calculaPrecoVenda(Produto p) {
 		return p.precoDeCusto * margemLucro;
+	}
+	
+	public void reporEstoque() {
+		for(Produto x : getProdutos()) {
+			if(x.getEstoque() <=  x.getEstoqueMin()) {
+				while(x.getEstoque() <= x.getEstoqueMin())
+				x.aumentarEstoque();
+			}
+		}
 	}
 }

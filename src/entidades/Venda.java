@@ -1,13 +1,15 @@
 package entidades;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Calendar;
 
 public class Venda {
 	Scanner sc = new Scanner(System.in);
+	static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
 	private Date data;
 	private Integer codigo;
@@ -22,19 +24,20 @@ public class Venda {
 	public static Item item = new Item();
 	private Relatorios r = new Relatorios();
 
-	public Venda() {
-
-	}
+	public Venda() {}
 
 	public Venda(Date data, Cliente client) {
 		this.codigo = ++ultimoCodigo;
 		this.data = data;
 		this.cliente = client;
-
 	}
 
 	public Date getData() {
 		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public Integer getCodigo() {
@@ -195,12 +198,12 @@ public class Venda {
 					&& dataAtual.get(Calendar.YEAR) == dataVenda.get(Calendar.YEAR)) {
 
 				System.out.println("Código da Venda: " + venda.getCodigo());
-				System.out.println("Data da Venda: " + venda.getData());
+				System.out.println("Data da Venda: " +  sdf.format(venda.getData()));
 				System.out.println("Cliente: " + venda.getCliente().getNome());
 				System.out.println("Forma de Pagamento: " + venda.getCondPag());
 				System.out.println("Itens da Venda:");
 
-				for (Item x : item.getItens()) {
+				for (Item x : Venda.item.getItens()) {
 					System.out.println(x.getProduto().getDescricao() + " | "
 							+ String.format("R$%.2f", x.getProduto().getPrecoDeVenda()) + " | "
 							+ String.format("R$%.2f", x.calcularSubtotal(x)));
@@ -214,6 +217,7 @@ public class Venda {
 							"Valor Total de Todas as Vendas do Dia: R$" + String.format("%.2f", valorTotalDoDia));
 				}
 			}
+			System.out.println();
 		}
 	}
 }

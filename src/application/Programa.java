@@ -234,8 +234,8 @@ public class Programa {
 						do {
 							
 							p.reporEstoque();
-							System.out.println("Os produtos com baixo estoque foram repostos. \n[2] Retornar para o menu" );
-							sairMenu = sc.nextInt();
+							System.out.println("Os produtos com baixo estoque foram repostos." );
+							sairMenu = 2;
 						} while (sairMenu == 1);
 
 						System.out.println("=======================================================================\n");
@@ -284,7 +284,7 @@ public class Programa {
 						System.out.println(bgverde
 								+ "                             RELATÓRIOS                                \n" + limpa);
 						System.out.println(verde + "[1]" + limpa + " Produtos cadastrados \n" + verde + "[2]" + limpa
-								+ " Produtos com baixo estoque \n" + verde + "[3]" + limpa + " Produtos vendidos \n"
+								+ " Produtos com baixo estoque \n" + verde + "[3]" + limpa + " Vendas realizadas \n"
 								+ vermelho + "[4]" + limpa + " Sair");
 						escolha = sc.nextInt();
 						switch (escolha) {
