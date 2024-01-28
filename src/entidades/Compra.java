@@ -101,16 +101,16 @@ public class Compra {
 		sc.nextLine();
 
 		if (finalizar == 's' || finalizar == 'S') {
-			System.out.println("Compra realizada com sucesso \n");
+			System.out.println("Compra realizada com sucesso");
 
 			for (int i = 0; i < unidades; i++)
 				produto.aumentarEstoque();
 
 			compras.add(compra);
-			codigo = compras.indexOf(compra);
+			compra.codigo = compras.indexOf(compra);
 		} 
 		else if (finalizar == 'n' || finalizar == 'N') {
-			System.out.println("Compra cancelada \n");
+			System.out.println("Compra cancelada");
 			valorTotal = 0.0;
 		}
 	}

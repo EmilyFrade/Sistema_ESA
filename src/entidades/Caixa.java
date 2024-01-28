@@ -28,7 +28,7 @@ public class Caixa {
 	}
 
 	public Double sangria() {
-		System.out.printf("Valor atual do caixa: %.2f\n ", valor);
+		System.out.printf("Valor atual do caixa: %.2f\n", valor);
 		System.out.printf("Qual o valor da sangria? ");
 		Double sangria = sc.nextDouble();
 		if(sangria <= valor)
