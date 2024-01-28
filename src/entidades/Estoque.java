@@ -26,10 +26,10 @@ public class Estoque {
 		p = new Produto("Armários para Escritório", 250.06, 3, "Armários");
 		p.incluirProduto(p);
 
-		p = new Produto("Armário De Canto Para Escritório", 151.53, 3, "Armários");
+		p = new Produto("Armário De Canto Escritório", 151.53, 3, "Armários");
 		p.incluirProduto(p);
 
-		p = new Produto("Armário Estante 2 Portas Vidro", 229.64, 3, "Armários");
+		p = new Produto("Armário Estante 2 Portas", 229.64, 3, "Armários");
 		p.incluirProduto(p);
 
 		p = new Produto("Cama Articulada de Casal", 239.95, 5, "Camas");

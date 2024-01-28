@@ -3,6 +3,7 @@ package application;
 import java.util.Scanner;
 
 import entidades.Caixa;
+import entidades.Compra;
 import entidades.DadosClientes;
 import entidades.Estoque;
 import entidades.Produto;
@@ -25,6 +26,7 @@ public class Programa {
 		Estoque e = new Estoque();
 		Relatorios r = new Relatorios();
 		Produto p = new Produto();
+		Compra c = new Compra();
 
 		d.clientesIniciais();
 		e.estoqueInicial();
@@ -185,7 +187,8 @@ public class Programa {
 				while (sairMenu == 1 || sairMenu == 2) {
 					System.out.println(verde + "[1]" + limpa + " Cadastrar produto \n" + verde + "[2]" + limpa
 							+ " Excluir produto \n" + verde + "[3]" + limpa + " Vizualizar produtos em baixo estoque \n"
-							+ verde + "[4]" + limpa + " Repor estoque\n" + vermelho + "[5]" + limpa + " Sair");
+							+ verde + "[4]" + limpa + " Repor estoque mínimo\n" + verde + "[5]" + limpa + " Fazer compra\n" 
+							+ vermelho + "[6]" + limpa + " Sair");
 
 					int menuVendedor = sc.nextInt();
 
@@ -193,10 +196,10 @@ public class Programa {
 					case 1:
 						System.out.println(bgverde
 								+ "                           CADASTRAR PRODUTO                           \n" + limpa);
-						p.cadastrarProduto();
-						System.out.println("=======================================================================\n");
-
+						
 						do {
+							p.cadastrarProduto();
+							System.out.println("=======================================================================\n");
 							System.out.println("Deseja cadastrar outro produto?\n[1] Sim \n[2] Não");
 							sairMenu = sc.nextInt();
 						} while (sairMenu == 1);
@@ -207,11 +210,11 @@ public class Programa {
 					case 2:
 						System.out.println(bgverde
 								+ "                             EXCLUIR PRODUTO                           \n" + limpa);
-						r.relatorioProdutos();
-						p.excluirProduto();
-						System.out.println("=======================================================================\n");
-
+						
 						do {
+							r.relatorioProdutos();
+							p.excluirProduto();
+							System.out.println("=======================================================================\n");
 							System.out.println("Deseja excluir outro produto?\n[1] Sim \n[2] Não");
 							sairMenu = sc.nextInt();
 						} while (sairMenu == 1);
@@ -232,7 +235,6 @@ public class Programa {
 						System.out.println(bgverde
 								+ "                             REPOR ESTOQUE                             \n" + limpa);
 						do {
-							
 							p.reporEstoque();
 							System.out.println("Os produtos com baixo estoque foram repostos." );
 							sairMenu = 2;
@@ -242,6 +244,18 @@ public class Programa {
 						break;
 
 					case 5:
+						System.out.println(bgverde
+								+ "                             FAZER COMPRA                             \n" + limpa);
+						do {
+							c.fazerCompra();
+							r.relatorioCompras();
+							sairMenu = 2;
+						} while (sairMenu == 1);
+
+						System.out.println("=======================================================================\n");
+						break;
+
+					case 6:
 						sairMenu = 3;
 						sair = 1;
 						break;
