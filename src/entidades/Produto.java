@@ -19,7 +19,8 @@ public class Produto {
 
 	private static List<Produto> produtos = new ArrayList<>();
 
-	public Produto() {}
+	public Produto() {
+	}
 
 	public Produto(String descricao, Double precoDeCusto, Integer estoque, String categoria) {
 		this.descricao = descricao;
@@ -32,8 +33,8 @@ public class Produto {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
+	public Integer setCodigo(Integer codigo) {
+		return this.codigo = codigo;
 	}
 
 	public String getDescricao() {
@@ -117,24 +118,49 @@ public class Produto {
 		sc.nextLine();
 		System.out.print("Categoria do produto: ");
 		String cat = sc.nextLine();
-		
+
 		Produto p = new Produto(desc, preco, estoque, cat);
 		incluirProduto(p);
-		
+
 		System.out.println("\nProduto cadastrado com sucesso!");
 	}
-	
+
 	public void excluirProduto() {
-		if (codigo >= 1 && codigo <= produtos.size()) {
-            
-           // produtos.remove(codigo - 1);
-            System.out.println("Produto removido com sucesso!");
-        } else {
-            System.out.println("Código inválido. Nenhum produto removido.");
-        }
 		
-		//System.out.println("\nProduto excluído com sucesso!");
+	    System.out.print("Código do produto que deseja excluir: ");
+	    
+	    int codigoExcluir = sc.nextInt();
+	    sc.nextLine();
+
+	    List<Produto> produtosTemp = new ArrayList<>();
+	    
+	    boolean produtoEncontrado = false;
+
+	    for (Produto produto : produtos) {
+	        if (codigoExcluir == produto.getCodigo()) {
+	        	
+	            produtoEncontrado = true;
+	            System.out.println("Produto removido com sucesso!");
+	            System.out.println("Lista atualizada de produtos: \n");
+	            Relatorios relatorios = new Relatorios();
+				relatorios.relatorioProdutosVendas();
+	        }
+	        
+	        else {
+	            produtosTemp.add(produto);
+	        }
+	    }
+
+	    if (!produtoEncontrado) {
+	        System.out.println("Código inválido. Nenhum produto removido.");
+	    }
+	    
+	    produtos = produtosTemp;
+
+	    
+	    
 	}
+
 
 	public void incluirProduto(Produto p) {
 		produtos.add(p);
@@ -145,12 +171,12 @@ public class Produto {
 	public Double calculaPrecoVenda(Produto p) {
 		return p.precoDeCusto * margemLucro;
 	}
-	
+
 	public void reporEstoque() {
-		for(Produto x : getProdutos()) {
-			if(x.getEstoque() <=  x.getEstoqueMin()) {
-				while(x.getEstoque() <= x.getEstoqueMin())
-				x.aumentarEstoque();
+		for (Produto x : getProdutos()) {
+			if (x.getEstoque() <= x.getEstoqueMin()) {
+				while (x.getEstoque() <= x.getEstoqueMin())
+					x.aumentarEstoque();
 			}
 		}
 	}
