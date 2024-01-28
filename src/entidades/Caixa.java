@@ -22,14 +22,19 @@ public class Caixa {
 	}
 
 	public Double adicionarDinheiro(Double dinheiro) {
+		
 		valor += dinheiro;
 		return valor;
 	}
 
 	public Double sangria() {
-		System.out.print("Qual o valor da sangria? ");
+		System.out.printf("Valor atual do caixa: %.2f\n ", valor);
+		System.out.printf("Qual o valor da sangria? ");
 		Double sangria = sc.nextDouble();
-		valor -= sangria;
+		if(sangria <= valor)
+			valor -= sangria;
+		else
+			System.out.println("O valor que deseja retirar é maior que o disponível");
 		System.out.printf("Valor atual do caixa: %.2f ", valor);
 
 		return valor;
