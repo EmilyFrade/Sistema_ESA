@@ -104,7 +104,7 @@ public class Programa {
 						if (caixaAberto == 1) {
 							do {
 								System.out.printf("Valor atual do caixa: %.2f \n", caixa.getValor());
-								System.out.printf("Qual o valor deseja adicionar? ");
+								System.out.print("Qual o valor deseja adicionar? ");
 								System.out.printf("Valor atual do caixa: R$%.2f",
 										caixa.adicionarDinheiro(sc.nextDouble()));
 								System.out.println("\n\nDeseja adicionar mais dinheiro?\n[1] Sim \n[2] Não");
@@ -170,7 +170,7 @@ public class Programa {
 
 						System.out.println("=======================================================================\n");
 						break;
-
+						
 					case 8:
 						sairMenu = 3;
 						sair = 1;
