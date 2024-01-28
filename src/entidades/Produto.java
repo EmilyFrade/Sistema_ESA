@@ -127,13 +127,13 @@ public class Produto {
 	public void excluirProduto() {
 		if (codigo >= 1 && codigo <= produtos.size()) {
             
-            produtos.remove(codigo - 1);
+           // produtos.remove(codigo - 1);
             System.out.println("Produto removido com sucesso!");
         } else {
             System.out.println("Código inválido. Nenhum produto removido.");
         }
 		
-		System.out.println("\nProduto excluído com sucesso!");
+		//System.out.println("\nProduto excluído com sucesso!");
 	}
 
 	public void incluirProduto(Produto p) {
