@@ -142,8 +142,8 @@ public class Produto {
 	            produtoEncontrado = true;
 	            System.out.println("Produto removido com sucesso!");
 	            System.out.println("Lista atualizada de produtos: \n");
-	            Relatorios relatorios = new Relatorios();
-				relatorios.relatorioProdutosVendas();
+	            List<Produto> produtosTemp1 = new ArrayList<>();
+				
 	        }
 	        
 	        else {
