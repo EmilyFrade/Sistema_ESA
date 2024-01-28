@@ -125,10 +125,13 @@ public class Produto {
 	}
 	
 	public void excluirProduto() {
-		System.out.print("Código do produto que deseja excluir: ");
-		Integer codigo = sc.nextInt();
-		
-		produtos.remove(codigo - 1);
+		if (codigo >= 1 && codigo <= produtos.size()) {
+            
+            produtos.remove(codigo - 1);
+            System.out.println("Produto removido com sucesso!");
+        } else {
+            System.out.println("Código inválido. Nenhum produto removido.");
+        }
 		
 		System.out.println("\nProduto excluído com sucesso!");
 	}
