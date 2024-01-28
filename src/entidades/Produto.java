@@ -141,11 +141,7 @@ public class Produto {
 	        	
 	            produtoEncontrado = true;
 	            System.out.println("Produto removido com sucesso!");
-	            System.out.println("Lista atualizada de produtos: \n");
-	            List<Produto> produtosTemp1 = new ArrayList<>();
-				
-	        }
-	        
+	        }	        
 	        else {
 	            produtosTemp.add(produto);
 	        }
