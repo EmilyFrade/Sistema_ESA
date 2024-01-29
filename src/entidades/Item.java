@@ -12,8 +12,7 @@ public class Item {
 
 	private Produto produto = new Produto();
 
-	public Item() {
-	}
+	public Item() {}
 
 	public Item(Produto produto, Integer qtd) {
 		this.produto = produto;
@@ -22,10 +21,6 @@ public class Item {
 
 	public Integer getQtd() {
 		return qtd;
-	}
-
-	public void setQtd(Integer qtd) {
-		this.qtd = qtd;
 	}
 
 	public List<Item> getItens() {

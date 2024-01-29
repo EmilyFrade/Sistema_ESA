@@ -19,8 +19,7 @@ public class Produto {
 
 	private static List<Produto> produtos = new ArrayList<>();
 
-	public Produto() {
-	}
+	public Produto() {}
 
 	public Produto(String descricao, Double precoDeCusto, Integer estoque, String categoria) {
 		this.descricao = descricao;
@@ -31,10 +30,6 @@ public class Produto {
 
 	public Integer getCodigo() {
 		return codigo;
-	}
-
-	public Integer setCodigo(Integer codigo) {
-		return this.codigo = codigo;
 	}
 
 	public String getDescricao() {
@@ -90,6 +85,9 @@ public class Produto {
 		System.out.print("Quanto gostaria de colocar como estoque mínimo? ");
 		estoqueMin = sc.nextInt();
 		System.out.println("Estoque mínimo atualizado: " + estoqueMin + " unidades.");
+		
+		for (Produto x : produtos)
+			x.estoqueMin = estoqueMin;
 	}
 
 	public void definirPorcenLucro() {
@@ -109,6 +107,10 @@ public class Produto {
 	public void aumentarEstoque() {
 		estoque++;
 	}
+	
+	public void aumentarQtdVendida() {
+		qtdVendida++;
+	}
 
 	public void cadastrarProduto() {
 		System.out.print("Descrição do novo produto: ");
@@ -126,7 +128,6 @@ public class Produto {
 	}
 
 	public void excluirProduto() {
-		
 	    System.out.print("Código do produto que deseja excluir: ");
 	    
 	    int codigoExcluir = sc.nextInt();
@@ -138,29 +139,23 @@ public class Produto {
 
 	    for (Produto produto : produtos) {
 	        if (codigoExcluir == produto.getCodigo()) {
-	        	
 	            produtoEncontrado = true;
 	            System.out.println("Produto removido com sucesso!");
 	        }	        
-	        else {
+	        else 
 	            produtosTemp.add(produto);
-	        }
 	    }
 
 	    if (!produtoEncontrado) {
 	        System.out.println("Código inválido. Nenhum produto removido.");
 	    }
 	    
-	    produtos = produtosTemp;
-
-	    
-	    
+	    produtos = produtosTemp;   
 	}
-
 
 	public void incluirProduto(Produto p) {
 		produtos.add(p);
-		p.setCodigo(produtos.indexOf(p) + 1);
+		p.codigo = produtos.indexOf(p) + 1;
 		p.precoDeVenda = calculaPrecoVenda(p);
 	}
 

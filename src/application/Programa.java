@@ -302,21 +302,40 @@ public class Programa {
 								+ "                             RELATÓRIOS                                \n" + limpa);
 						System.out.println(verde + "[1]" + limpa + " Produtos cadastrados \n" + verde + "[2]" + limpa
 								+ " Produtos com baixo estoque \n" + verde + "[3]" + limpa + " Vendas realizadas \n"
-								+ vermelho + "[4]" + limpa + " Sair");
+								+ verde + "[4]" + limpa + " Compras realizadas \n" + verde + "[5]" + limpa 
+								+ " Clientes \n" + vermelho + "[6]" + limpa + " Sair");
+						
 						escolha = sc.nextInt();
 						switch (escolha) {
-
 						case 1:
 							r.relatorioProdutos();
-							sairMenu = 2;
 							break;
+							
 						case 2:
 							r.relatorioProdutosEstoqueMin();
-							sairMenu = 2;
 							break;
+							
 						case 3:
-							//Venda.relatorioVendasFinalizadas();
+							r.relatorioVendas();
+							break;
+						
+						case 4:
+							r.relatorioCompras();
+							break;
+							
+						case 5:
+							r.relatorioClientes();
+							break;
+							
+						case 6:
+							sairMenu = 3;
+							sair = 1;
+							break;
+
+						default:
+							System.out.println("Entrada inválida \n");
 						}
+						
 						sairMenu = 2;
 						System.out.println("=======================================================================\n");
 						break;

@@ -22,7 +22,6 @@ public class Caixa {
 	}
 
 	public Double adicionarDinheiro(Double dinheiro) {
-		
 		valor += dinheiro;
 		return valor;
 	}

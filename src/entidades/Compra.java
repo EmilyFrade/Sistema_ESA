@@ -1,6 +1,5 @@
 package entidades;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,8 +7,7 @@ import java.util.Scanner;
 
 public class Compra {
 	Scanner sc = new Scanner(System.in);
-	static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
+	
 	private Date data;
 	private Integer codigo;
 	private Produto produto;
@@ -42,10 +40,6 @@ public class Compra {
 
 	public Produto getProduto() {
 		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
 	}
 
 	public Integer getUnidades() {
