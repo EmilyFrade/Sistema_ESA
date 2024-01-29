@@ -53,6 +53,7 @@ public class Relatorios {
 	public void relatorioCompras() {
 		System.out.println("Relatório de Compras Realizadas:");
 		System.out.println("--------------------------------");
+		double valorTotalDoDia = 0.0;
 
 		for (Compra x : Compra.getCompras()) {
 			 System.out.println("Código da Compra: " + x.getCodigo());
@@ -61,8 +62,11 @@ public class Relatorios {
 			 System.out.println("Produto: " + x.getProduto().getDescricao());
 			 System.out.println("Unidades compradas: " + x.getUnidades());
 			 System.out.println("Valor Total da Compra: R$" + String.format("%.2f", x.getValorTotal()));
-			 System.out.println("----------------------------------\n"); 
+			 System.out.println("----------------------------------"); 
+			 
+			 valorTotalDoDia += x.getValorTotal();
 		}
+		System.out.println("Valor Total de Compras do Dia: R$" + String.format("%.2f", valorTotalDoDia));
 	}
 	
 	public void relatorioVendas() {
@@ -88,7 +92,7 @@ public class Relatorios {
 
 			valorTotalDoDia += venda.getValorTotal();
 		} 
-		System.out.println("Valor Total de Todas as Vendas do Dia: R$" + String.format("%.2f", valorTotalDoDia));
+		System.out.println("Valor Total de Vendas do Dia: R$" + String.format("%.2f", valorTotalDoDia));
 	}
 	
 	public void relatorioClientes() {

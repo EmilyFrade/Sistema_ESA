@@ -1,11 +1,9 @@
 package application;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import entidades.Caixa;
 import entidades.Compra;
-//import entidades.Compra;
 import entidades.DadosClientes;
 import entidades.Estoque;
 import entidades.Produto;
@@ -62,8 +60,8 @@ public class Programa {
 					System.out.println(verde + "[1]" + limpa + " Abrir caixa \n" + verde + "[2]" + limpa
 							+ " Nova venda \n" + verde + "[3]" + limpa + " Suprimento\n" + verde + "[4]" + limpa
 							+ " Sangria\n" + verde + "[5]" + limpa + " Vizualizar caixa\n" + verde + "[6]" + limpa
-							+ " Pesquisar produto\n" + verde + "[7]" + limpa + " Fechar caixa\n" + vermelho + "[8]"
-							+ limpa + " Sair");
+							+ " Pesquisar produto\n" + verde + "[7]" + limpa + " Fechar caixa\n" + verde + "[8]" + limpa 
+							+ " Vendas realizadas\n" + vermelho + "[9]" + limpa + " Sair");
 
 					int menuVendedor = sc.nextInt();
 
@@ -80,7 +78,6 @@ public class Programa {
 							sairMenu = 2;
 							break;
 							
-						
 					case 2:
 						System.out.println(bgverde
 								+ "                              NOVA VENDA                               \n" + limpa);
@@ -175,6 +172,13 @@ public class Programa {
 						break;
 						
 					case 8:
+						System.out.println(bgverde
+								+ "                              RELATÓRIO DE VENDAS                              \n" + limpa);
+						r.relatorioVendas();
+						System.out.println("=======================================================================\n");
+						break;
+						
+					case 9:
 						sairMenu = 3;
 						sair = 1;
 						break;
@@ -194,7 +198,8 @@ public class Programa {
 					System.out.println(verde + "[1]" + limpa + " Cadastrar produto \n" + verde + "[2]" + limpa
 							+ " Excluir produto \n" + verde + "[3]" + limpa + " Vizualizar produtos em baixo estoque \n"
 							+ verde + "[4]" + limpa + " Repor estoque mínimo\n" + verde + "[5]" + limpa
-							+ " Fazer compra\n" + vermelho + "[6]" + limpa + " Sair");
+							+ " Fazer compra\n" + verde + "[6]" + limpa + " Compras realizadas\n" + vermelho 
+							+ "[7]" + limpa + " Sair");
 
 					int menuVendedor = sc.nextInt();
 
@@ -260,6 +265,13 @@ public class Programa {
 						break;
 
 					case 6:
+						System.out.println(bgverde
+								+ "                             RELATÓRIO DE COMPRAS                           \n" + limpa);
+						r.relatorioCompras();
+						System.out.println("=======================================================================\n");
+						break;
+						
+					case 7:
 						sairMenu = 3;
 						sair = 1;
 						break;

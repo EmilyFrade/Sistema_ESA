@@ -1,10 +1,7 @@
 package entidades;
 
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import application.Programa;
 
 public class Caixa {
 	
@@ -16,33 +13,18 @@ public class Caixa {
 		return valor;
 	}
 
-	
-	@SuppressWarnings("finally")
 	public Integer abrirCaixa(Caixa caixa) {
-		int c = 0;
-		
 		try {
-			sc.nextLine();
 			System.out.print("Valor inicial do caixa: ");
-			Double v = sc.nextDouble();
-			valor = v;	
+			valor = sc.nextDouble();
+			System.out.printf("O caixa foi aberto com R$%.2f \n", valor);
+			return 1;
 		}
 		catch(InputMismatchException e) {
-			System.out.print("ERRO! Digite apenas numeros para inserir o valor \n");
-			c = 1;
-			
+			System.out.print("ERRO! Digite apenas números para inserir o valor \n");
+			sc.nextLine();
+			return 0;
 		}
-		
-		finally{
-			if(c == 0) {
-				System.out.printf("O caixa foi aberto com R$%.2f \n\n", valor);
-				return 1;
-			}else {
-				return 0;
-			}
-			
-		}
-		
 	}
 	
 
@@ -55,6 +37,7 @@ public class Caixa {
 		System.out.printf("Valor atual do caixa: %.2f\n", valor);
 		System.out.printf("Qual o valor da sangria? ");
 		Double sangria = sc.nextDouble();
+		
 		if(sangria <= valor)
 			valor -= sangria;
 		else

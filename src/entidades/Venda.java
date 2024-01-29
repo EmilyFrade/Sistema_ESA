@@ -137,15 +137,15 @@ public class Venda {
 		venda.valorTotal = calcularTotal();
 		valorTotal = venda.valorTotal;
 		System.out.println();
-		System.out.printf("Valor total da compra: R$%.2f \n", venda.valorTotal);
+		System.out.printf("Valor total da venda: R$%.2f \n", venda.valorTotal);
 
 		System.out.println();
-		System.out.print("Deseja finalizar a compra (s/n)? ");
+		System.out.print("Deseja finalizar a venda (s/n)? ");
 		char finalizar = sc.next().charAt(0);
 		sc.nextLine();
 
 		if (finalizar == 's' || finalizar == 'S') {
-			System.out.println("Compra realizada com sucesso \n");
+			System.out.println("Venda realizada com sucesso \n");
 			temp.adicionarCompra();
 
 			for (Item y : item.getItens()) {
@@ -158,7 +158,7 @@ public class Venda {
 			vendas.add(venda);
 			venda.codigo = vendas.indexOf(venda);
 		} else if (finalizar == 'n' || finalizar == 'N') {
-			System.out.println("Compra cancelada \n");
+			System.out.println("Venda cancelada \n");
 			valorTotal = 0.0;
 		}
 
