@@ -1,5 +1,6 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import entidades.Caixa;
@@ -70,15 +71,16 @@ public class Programa {
 					case 1:
 						System.out.println(bgverde
 								+ "                              ABRIR CAIXA                              \n" + limpa);
-						if (caixaAberto == 1)
+						if (caixaAberto == 0) 
+							caixaAberto = caixa.abrirCaixa(caixa);
+					
+						else 
 							System.out.println("O caixa já foi aberto");
-						else
-							caixa.abrirCaixa(caixa);
-						System.out.println("=======================================================================\n");
-						caixaAberto = 1;
-						sairMenu = 2;
-						break;
-
+							System.out.println("=======================================================================\n");
+							sairMenu = 2;
+							break;
+							
+						
 					case 2:
 						System.out.println(bgverde
 								+ "                              NOVA VENDA                               \n" + limpa);
