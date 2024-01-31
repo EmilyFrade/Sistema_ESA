@@ -30,9 +30,8 @@ public class Caixa {
 
 	public Double adicionarDinheiro(Double dinheiro) {
 		valor += dinheiro;
-		return valor;
+		return valor;	
 	}
-
 	public Double sangria() {
 		System.out.printf("Valor atual do caixa: %.2f\n", valor);
 		System.out.printf("Qual o valor da sangria? ");

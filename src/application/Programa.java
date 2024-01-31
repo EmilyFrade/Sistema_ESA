@@ -2,6 +2,7 @@ package application;
 
 import java.util.Scanner;
 
+
 import entidades.Caixa;
 import entidades.Compra;
 import entidades.DadosClientes;
@@ -9,7 +10,7 @@ import entidades.Estoque;
 import entidades.Produto;
 import entidades.Relatorios;
 import entidades.Venda;
-
+import java.util.InputMismatchException;
 public class Programa {
 
 	public static void main(String[] args) {
@@ -101,18 +102,29 @@ public class Programa {
 					case 3:
 						System.out.println(bgverde
 								+ "                              SUPRIMENTO                               \n" + limpa);
+					
 						if (caixaAberto == 1) {
 							do {
+							try {
 								System.out.printf("Valor atual do caixa: %.2f \n", caixa.getValor());
 								System.out.print("Qual o valor deseja adicionar? ");
 								System.out.printf("Valor atual do caixa: R$%.2f",
 										caixa.adicionarDinheiro(sc.nextDouble()));
+							
+							
 								System.out.println("\n\nDeseja adicionar mais dinheiro?\n[1] Sim \n[2] Não");
 								sairMenu = sc.nextInt();
+							}catch(InputMismatchException o) {
+
+								System.out.println("ERRO! Digite apenas números para inserir o valor \n");
+								sairMenu = 2;
+								sc.nextLine();
+							}
 							} while (sairMenu == 1);
 						} else {
 							System.out.println("O caixa ainda não foi aberto");
 							sairMenu = 2;
+							
 						}
 
 						System.out.println("=======================================================================\n");
