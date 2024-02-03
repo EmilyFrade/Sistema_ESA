@@ -35,6 +35,7 @@ public class Item {
 		char c = 's';
 
 		while (c == 's' || c == 'S') {
+			qtd = 0;
 			System.out.print("Qual o código do produto que deseja adicionar ao carrinho? ");
 			Integer codigo = sc.nextInt();
 
@@ -52,6 +53,9 @@ public class Item {
 					break;
 				}
 			}
+			
+			if (qtd == 0)
+				System.out.println("Código inválido \n");
 
 			System.out.print("Deseja adicionar novo produto ao carrinho (s/n)? ");
 			c = sc.next().charAt(0);

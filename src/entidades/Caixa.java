@@ -17,7 +17,14 @@ public class Caixa {
 		try {
 			System.out.print("Valor inicial do caixa: ");
 			valor = sc.nextDouble();
-			System.out.printf("O caixa foi aberto com R$%.2f \n", valor);
+			
+			if (valor >= 0.0) 
+				System.out.printf("O caixa foi aberto com R$%.2f \n", valor);
+			else {
+				System.out.printf("O caixa não pode ser aberto com valor negativo \n");
+				return 0;
+			}
+			
 			return 1;
 		}
 		catch(InputMismatchException e) {
@@ -27,11 +34,11 @@ public class Caixa {
 		}
 	}
 	
-
 	public Double adicionarDinheiro(Double dinheiro) {
 		valor += dinheiro;
 		return valor;	
 	}
+	
 	public Double sangria() {
 		System.out.printf("Valor atual do caixa: %.2f\n", valor);
 		System.out.printf("Qual o valor da sangria? ");
@@ -62,6 +69,4 @@ public class Caixa {
 	public void vizualizarCaixa() {
 		System.out.printf("Valor atual do caixa: %.2f \n", valor);
 	}
-	
-	
 }
