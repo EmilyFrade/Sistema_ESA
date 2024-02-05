@@ -13,18 +13,17 @@ public class Venda {
 	private String condPag;
 	private Double desconto = 0.1;
 	private Double valorTotal;
-	private static int ultimoCodigo = 0;
 
 	private static List<Venda> vendas = new ArrayList<>();
+	private List<Item> itens = new ArrayList<>();
 
 	private Cliente cliente = new Cliente();
-	public static Item item = new Item();
+	private Item item = new Item();
 	private Relatorios r = new Relatorios();
 
 	public Venda() {}
 
 	public Venda(Date data, Cliente client) {
-		this.codigo = ++ultimoCodigo;
 		this.data = data;
 		this.cliente = client;
 	}
@@ -65,10 +64,14 @@ public class Venda {
 		return valorTotal;
 	}
 
-	public List<Venda> getVendas() {
+	public static List<Venda> getVendas() {
 		return vendas;
 	}
 
+	public List<Item> getItens() {
+		return itens;
+	}
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -110,6 +113,10 @@ public class Venda {
 
 		r.relatorioProdutosVendas();
 		item.adicionarItem();
+		
+		for (Item x : item.getItens()) {
+			venda.itens.add(x);
+		}
 
 		recibo();
 
@@ -130,26 +137,28 @@ public class Venda {
 		venda.valorTotal = calcularTotal();
 		valorTotal = venda.valorTotal;
 		System.out.println();
-		System.out.printf("Valor total da compra: R$%.2f \n", venda.valorTotal);
+		System.out.printf("Valor total da venda: R$%.2f \n", venda.valorTotal);
 
 		System.out.println();
-		System.out.print("Deseja finalizar a compra (s/n)? ");
+		System.out.print("Deseja finalizar a venda (s/n)? ");
 		char finalizar = sc.next().charAt(0);
 		sc.nextLine();
 
 		if (finalizar == 's' || finalizar == 'S') {
-			System.out.println("Compra realizada com sucesso \n");
+			System.out.println("Venda realizada com sucesso \n");
 			temp.adicionarCompra();
 
 			for (Item y : item.getItens()) {
-				for (int i = 0; i < y.getQtd(); i++)
+				for (int i = 0; i < y.getQtd(); i++) {
 					y.getProduto().diminuirEstoque();
+					y.getProduto().aumentarQtdVendida();
+				}
 			}
 
 			vendas.add(venda);
-			codigo = vendas.indexOf(venda);
+			venda.codigo = vendas.indexOf(venda);
 		} else if (finalizar == 'n' || finalizar == 'N') {
-			System.out.println("Compra cancelada \n");
+			System.out.println("Venda cancelada \n");
 			valorTotal = 0.0;
 		}
 
@@ -172,7 +181,7 @@ public class Venda {
 		System.out.println("Descrição | Preço unitário | SubTotal");
 		System.out.println("-------------------------------------");
 
-		for (Item x : Venda.item.getItens()) {
+		for (Item x : item.getItens()) {
 			System.out.println(
 					x.getProduto().getDescricao() + " | " + String.format("R$%.2f", x.getProduto().getPrecoDeVenda())
 							+ " | " + String.format("R$%.2f", x.calcularSubtotal(x)));

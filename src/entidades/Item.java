@@ -12,8 +12,7 @@ public class Item {
 
 	private Produto produto = new Produto();
 
-	public Item() {
-	}
+	public Item() {}
 
 	public Item(Produto produto, Integer qtd) {
 		this.produto = produto;
@@ -22,10 +21,6 @@ public class Item {
 
 	public Integer getQtd() {
 		return qtd;
-	}
-
-	public void setQtd(Integer qtd) {
-		this.qtd = qtd;
 	}
 
 	public List<Item> getItens() {
@@ -40,6 +35,7 @@ public class Item {
 		char c = 's';
 
 		while (c == 's' || c == 'S') {
+			qtd = 0;
 			System.out.print("Qual o código do produto que deseja adicionar ao carrinho? ");
 			Integer codigo = sc.nextInt();
 
@@ -57,6 +53,9 @@ public class Item {
 					break;
 				}
 			}
+			
+			if (qtd == 0)
+				System.out.println("Código inválido \n");
 
 			System.out.print("Deseja adicionar novo produto ao carrinho (s/n)? ");
 			c = sc.next().charAt(0);

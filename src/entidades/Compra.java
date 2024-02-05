@@ -1,6 +1,5 @@
 package entidades;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,8 +7,7 @@ import java.util.Scanner;
 
 public class Compra {
 	Scanner sc = new Scanner(System.in);
-	static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
+	
 	private Date data;
 	private Integer codigo;
 	private Produto produto;
@@ -44,10 +42,6 @@ public class Compra {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
 	public Integer getUnidades() {
 		return unidades;
 	}
@@ -70,6 +64,7 @@ public class Compra {
 
 	public void fazerCompra() {
 		r.relatorioProdutos();
+		produto = null;
 
 		System.out.print("Qual o código do produto que deseja repor: ");
 		Integer codigo = sc.nextInt();
@@ -80,38 +75,42 @@ public class Compra {
 				break;
 			} 
 		}
-
-		System.out.print("Quantas unidades deseja repor: ");
-		unidades = sc.nextInt();
-		sc.nextLine();
 		
-		System.out.print("Nome do fornecedor: ");
-		String fornecedor = sc.nextLine();
-		
-		Double total = produto.getPrecoDeCusto() * unidades;
-		
-		Compra compra = new Compra(new Date(), produto, unidades, fornecedor, total);
-
-		System.out.println();
-		System.out.printf("Valor total da compra: R$%.2f \n", compra.valorTotal);
-
-		System.out.println();
-		System.out.print("Deseja finalizar a compra (s/n)? ");
-		char finalizar = sc.next().charAt(0);
-		sc.nextLine();
-
-		if (finalizar == 's' || finalizar == 'S') {
-			System.out.println("Compra realizada com sucesso");
-
-			for (int i = 0; i < unidades; i++)
-				produto.aumentarEstoque();
-
-			compras.add(compra);
-			compra.codigo = compras.indexOf(compra);
-		} 
-		else if (finalizar == 'n' || finalizar == 'N') {
-			System.out.println("Compra cancelada");
-			valorTotal = 0.0;
+		if (produto == null)
+			System.out.println("Código inválido \n");
+		else {
+			System.out.print("Quantas unidades deseja repor: ");
+			unidades = sc.nextInt();
+			sc.nextLine();
+			
+			System.out.print("Nome do fornecedor: ");
+			String fornecedor = sc.nextLine();
+			
+			Double total = produto.getPrecoDeCusto() * unidades;
+			
+			Compra compra = new Compra(new Date(), produto, unidades, fornecedor, total);
+	
+			System.out.println();
+			System.out.printf("Valor total da compra: R$%.2f \n", compra.valorTotal);
+	
+			System.out.println();
+			System.out.print("Deseja finalizar a compra (s/n)? ");
+			char finalizar = sc.next().charAt(0);
+			sc.nextLine();
+	
+			if (finalizar == 's' || finalizar == 'S') {
+				System.out.println("Compra realizada com sucesso");
+	
+				for (int i = 0; i < unidades; i++)
+					produto.aumentarEstoque();
+	
+				compras.add(compra);
+				compra.codigo = compras.indexOf(compra);
+			} 
+			else if (finalizar == 'n' || finalizar == 'N') {
+				System.out.println("Compra cancelada");
+				valorTotal = 0.0;
+			}
 		}
 	}
 }
