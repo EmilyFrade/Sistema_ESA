@@ -66,7 +66,7 @@ public class Caixa {
 		return 1;
 	}
 
-	public void vizualizarCaixa() {
+	public void visualizarCaixa() {
 		System.out.printf("Valor atual do caixa: %.2f \n", valor);
 	}
 }

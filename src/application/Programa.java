@@ -61,7 +61,7 @@ public class Programa {
 					while (sairMenu == 1 || sairMenu == 2) {
 						System.out.println(verde + "[1]" + limpa + " Abrir caixa \n" + verde + "[2]" + limpa
 								+ " Nova venda \n" + verde + "[3]" + limpa + " Suprimento\n" + verde + "[4]" + limpa
-								+ " Sangria\n" + verde + "[5]" + limpa + " Vizualizar caixa\n" + verde + "[6]" + limpa
+								+ " Sangria\n" + verde + "[5]" + limpa + " visualizar caixa\n" + verde + "[6]" + limpa
 								+ " Pesquisar produto\n" + verde + "[7]" + limpa + " Fechar caixa\n" + verde + "[8]" + limpa 
 								+ " Vendas realizadas\n" + vermelho + "[9]" + limpa + " Sair");
 	
@@ -147,9 +147,9 @@ public class Programa {
 						case 5:
 	
 							System.out.println(bgverde
-									+ "                           VIZUALIZAR CAIXA                            \n" + limpa);
+									+ "                           VISUALIZAR CAIXA                            \n" + limpa);
 							if (caixaAberto == 1) {
-								caixa.vizualizarCaixa();
+								caixa.visualizarCaixa();
 							} else {
 								System.out.println("O caixa ainda não foi aberto");
 								sairMenu = 2;
@@ -205,7 +205,7 @@ public class Programa {
 	
 					while (sairMenu == 1 || sairMenu == 2) {
 						System.out.println(verde + "[1]" + limpa + " Cadastrar produto \n" + verde + "[2]" + limpa
-								+ " Excluir produto \n" + verde + "[3]" + limpa + " Vizualizar produtos em baixo estoque \n"
+								+ " Excluir produto \n" + verde + "[3]" + limpa + " visualizar produtos em baixo estoque \n"
 								+ verde + "[4]" + limpa + " Repor estoque mínimo\n" + verde + "[5]" + limpa
 								+ " Fazer compra\n" + verde + "[6]" + limpa + " Compras realizadas\n" + vermelho 
 								+ "[7]" + limpa + " Sair");
@@ -298,7 +298,7 @@ public class Programa {
 	
 					while (sairMenu == 1 || sairMenu == 2) {
 						System.out.println(verde + "[1]" + limpa + " Definir margem de lucro \n" + verde + "[2]" + limpa
-								+ " Definir estoque mínimo \n" + verde + "[3]" + limpa + " Vizualizar relatórios \n"
+								+ " Definir estoque mínimo \n" + verde + "[3]" + limpa + " visualizar relatórios \n"
 								+ vermelho + "[4]" + limpa + " Sair");
 	
 						int menuVendedor = sc.nextInt();
